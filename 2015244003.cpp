@@ -42,6 +42,13 @@ char s_via[50][50]; // 지하철 경유역[
 char t_via[50][50];
 char b_via[50][50];
 
+int secondDecomposerStation(char a[50], char b[50]);
+int secondDecomposerTrain(char a[50], char b[50]);
+int secondDecomposerBus(char a[50], char b[50]);
+
+char FIRSTDECOMPOSER_TRANSFER_START[50];
+char FIRSTDECOMPOSER_TRANSFER_END[50];
+
 
 
 // << 1차 분해자 입력구간 >>
@@ -207,7 +214,7 @@ int firstDecomposer(char start[50], char end[50]) { // 최초 분해자 (출발지(a) 와
 				}; break;
 			case 2:
 				switch (e_i) {
-				case 2: printf("Error Number : 0000\n"); break; 
+				case 2: printf("Error Number : 0000\n"); break;
 				default: secondDecomposerTrain(s_string, e_string); break;
 				}; break;
 			case 3:
@@ -231,7 +238,7 @@ int firstDecomposer(char start[50], char end[50]) { // 최초 분해자 (출발지(a) 와
 			case 0:
 				switch (e_i) {
 				case 0: printf("Error Number : 0000\n"); break;
-				default: 
+				default:
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
 					secondDecomposerBus(e_string, end);
@@ -284,25 +291,173 @@ int firstDecomposer(char start[50], char end[50]) { // 최초 분해자 (출발지(a) 와
 	else {
 		switch (s_check) {
 		case 1:
-			switch(e_check) {
+			switch (e_check) {
 			case 1: printf("Error Number : 0001\n"); break;
 			case 2: 
-			case 3:
-			}
+				if (s_i != e_i) {
+					secondDecomposerStation(start, s_string);
+					secondDecomposerTrain(s_string, end);
+				}
+				else {
+					findSameCityTransferStation(e_i, e_i2, e_i3, s_check, e_check);
+					secondDecomposerStation(start, FIRSTDECOMPOSER_TRANSFER_START);
+				}
+				break;
+			case 3: 
+				if (s_i != e_i) {
+					secondDecomposerStation(start, s_string);
+					secondDecomposerTrain(s_string, e_string);
+					secondDecomposerBus(e_string, end);
+				}
+				else {
+					findSameCityTransferStation(e_i, e_i2, e_i3, s_check, e_check);
+					secondDecomposerStation(start, FIRSTDECOMPOSER_TRANSFER_START);
+					secondDecomposerBus(FIRSTDECOMPOSER_TRANSFER_END, end);
+				}
+				break;
+			}; break;
 		case 2:
 			switch (e_check) {
-			case 1:
+			case 1: 
+				if (s_i != e_i) {
+				}
+				else {
+				}
+				break;
 			case 2: printf("Error Number : 0001\n"); break;
-			case 3:
-			}
+			case 3: 
+				if (s_i != e_i) {
+				}
+				else {
+				}
+				break;
+			}; break;
 		case 3:
 			switch (e_check) {
-			case 1:
-			case 2:
+			case 1: 
+				if (s_i != e_i) {
+				}
+				else {
+				};
+				break;
+			case 2: 
+				if (s_i != e_i) {
+				}
+				else {
+				}
+				break;
 			case 3: printf("Error Number : 0001\n"); break;
-			}
+			}; break;
 		}
 	}
+}
+
+void findSameCityTransferStation(int e_i, int e_i2, int e_i3, int s_check, int e_check) {
+	switch (s_check) {
+	case 1: // 지하철
+		switch (e_check) {
+		case 1: printf("Error Number : 0002\n"); break;
+		case 2:
+			for (int i2 = e_i2; i2 < 10; i2++) {
+				for (int i3 = e_i3; i3 < 20; i3++) {
+					if (b[e_i][i2][i3].st != NULL) {
+						strcpy(FIRSTDECOMPOSER_TRANSFER_START, b[e_i][i2][i3].st->name);
+					}
+					return;
+				}
+				for (int i3 = e_i3; i3 >= 0; i3--) {
+					if (b[e_i][i2][i3].st != NULL) {
+						strcpy(FIRSTDECOMPOSER_TRANSFER_END, b[e_i][i2][i3].st->name);
+					}
+					return;
+				}
+			}; break;
+		case 3:
+			for (int i2 = e_i2; i2 < 999; i2++) {
+				for (int i3 = e_i3; i3 < 50; i3++) {
+					if (c[e_i][i2][i3].st != NULL) {
+						strcpy(FIRSTDECOMPOSER_TRANSFER_START, c[e_i][i2][i3].st->name);
+					}
+					return;
+				}
+				for (int i3 = e_i3; i3 >= 0; i3--) {
+					if (c[e_i][i2][i3].st != NULL) {
+						strcpy(FIRSTDECOMPOSER_TRANSFER_END, c[e_i][i2][i3].st->name);
+					}
+					return;
+				}
+			}; break;
+		}; break;
+	case 2: // 철도
+		switch (e_check) {
+		case 1:
+			for (int i2 = e_i2; i2 < 25; i2++) {
+				for (int i3 = e_i3; i3 < 30; i3++) {
+					if (a[e_i][i2][i3].tr != NULL) {
+						strcpy(FIRSTDECOMPOSER_TRANSFER_START, a[e_i][i2][i3].tr->name);
+					}
+					return;
+				}
+				for (int i3 = e_i3; i3 >= 0; i3--) {
+					if (a[e_i][i2][i3].tr != NULL) {
+						strcpy(FIRSTDECOMPOSER_TRANSFER_END, a[e_i][i2][i3].tr->name);
+					}
+					return;
+				}
+			}; break;
+		case 2: printf("Error Number : 0002\n"); break;
+		case 3:
+			for (int i2 = e_i2; i2 < 999; i2++) {
+				for (int i3 = e_i3; i3 < 50; i3++) {
+					if (c[e_i][i2][i3].st != NULL) {
+						strcpy(FIRSTDECOMPOSER_TRANSFER_START, c[e_i][i2][i3].tr->name);
+					}
+					return;
+				}
+				for (int i3 = e_i3; i3 >= 0; i3--) {
+					if (c[e_i][i2][i3].st != NULL) {
+						strcpy(FIRSTDECOMPOSER_TRANSFER_END, c[e_i][i2][i3].tr->name);
+					}
+					return;
+				}
+			}; break;
+		}; break;
+	case 3: // 버스
+		switch (e_check) {
+		case 1:
+			for (int i2 = e_i2; i2 < 25; i2++) {
+				for (int i3 = e_i3; i3 < 30; i3++) {
+					if (a[e_i][i2][i3].tr != NULL) {
+						strcpy(FIRSTDECOMPOSER_TRANSFER_START, a[e_i][i2][i3].bu->name);
+					}
+					return;
+				}
+				for (int i3 = e_i3; i3 >= 0; i3--) {
+					if (a[e_i][i2][i3].tr != NULL) {
+						strcpy(FIRSTDECOMPOSER_TRANSFER_END, a[e_i][i2][i3].bu->name);
+					}
+					return;
+				}
+			}; break;
+		case 2:
+			for (int i2 = e_i2; i2 < 10; i2++) {
+				for (int i3 = e_i3; i3 < 20; i3++) {
+					if (b[e_i][i2][i3].st != NULL) {
+						strcpy(FIRSTDECOMPOSER_TRANSFER_START, b[e_i][i2][i3].bu->name);
+					}
+					return;
+				}
+				for (int i3 = e_i3; i3 >= 0; i3--) {
+					if (b[e_i][i2][i3].st != NULL) {
+						strcpy(FIRSTDECOMPOSER_TRANSFER_END, b[e_i][i2][i3].bu->name);
+					}
+					return;
+				}
+			}; break;
+		case 3: printf("Error Number : 0002\n"); break;
+		}; break;
+	}
+
 }
  
 
