@@ -1,83 +1,83 @@
-// 2015244003.cpp : ÄÜ¼Ö ÀÀ¿ë ÇÁ·Î±×·¥¿¡ ´ëÇÑ ÁøÀÔÁ¡À» Á¤ÀÇÇÕ´Ï´Ù.
-//
+// 2015244003.cpp : ì½˜ì†” ì‘ìš© í”„ë¡œê·¸ë¨ì— ëŒ€í•œ ì§„ì…ì ì„ ì •ì˜í•©ë‹ˆë‹¤.
+// 
 
 #include "stdafx.h"
-#define N 50; // ÃÖ´ë ¿ª ÀÌ¸§ ±æÀÌ
+#define N 50; // ìµœëŒ€ ì—­ ì´ë¦„ ê¸¸ì´
 
-// << ¿ª Á¤º¸ ÀÔ·Â ±¸°£ >> (Çì´õ ÆÄÀÏÈ­ ÇÒ °ÍÀÓ)
+// << ì—­ ì •ë³´ ì…ë ¥ êµ¬ê°„ >> (í—¤ë” íŒŒì¼í™” í•  ê²ƒì„)
 typedef struct station;
 typedef struct train;
 typedef struct bus;
 
-typedef struct station { // ÁöÇÏÃ¶ ¿ª Á¤º¸
+typedef struct station { // ì§€í•˜ì²  ì—­ ì •ë³´
 	char name[50];
 	int time[2][24][20];
 
-	struct station *w; // ÁöÇÏÃ¶ È¯½Â 1
-	struct station *a; // ÁöÇÏÃ¶ È¯½Â 2
-	struct station *s; // ÁöÇÏÃ¶ È¯½Â 3
-	struct station *d; // ÁöÇÏÃ¶ È¯½Â 4
-	struct train *tr; // ±âÂ÷·Î È¯½Â
-	struct bus *bu; // ¹ö½º·Î È¯½Â
+	struct station *w; // ì§€í•˜ì²  í™˜ìŠ¹ 1
+	struct station *a; // ì§€í•˜ì²  í™˜ìŠ¹ 2
+	struct station *s; // ì§€í•˜ì²  í™˜ìŠ¹ 3
+	struct station *d; // ì§€í•˜ì²  í™˜ìŠ¹ 4
+	struct train *tr; // ê¸°ì°¨ë¡œ í™˜ìŠ¹
+	struct bus *bu; // ë²„ìŠ¤ë¡œ í™˜ìŠ¹
 }station;
 
-typedef struct train { // ±âÂ÷ ¿ª Á¤º¸
+typedef struct train { // ê¸°ì°¨ ì—­ ì •ë³´
 	char name[50];
 	int time[2][24];
 
-	struct station *st; // ÁöÇÏÃ¶·Î È¯½Â
-	struct bus *bu; // ¹ö½º·Î È¯½Â
+	struct station *st; // ì§€í•˜ì² ë¡œ í™˜ìŠ¹
+	struct bus *bu; // ë²„ìŠ¤ë¡œ í™˜ìŠ¹
 }train;
 
-typedef struct bus { // ¹ö½º ¿ª Á¤º¸
+typedef struct bus { // ë²„ìŠ¤ ì—­ ì •ë³´
 	char name[50];
 	int time[2][24];
 
-	struct station *st; // ÁöÇÏÃ¶·Î È¯½Â
-	struct train *tr; // ¹ö½º·Î È¯½Â
+	struct station *st; // ì§€í•˜ì² ë¡œ í™˜ìŠ¹
+	struct train *tr; // ë²„ìŠ¤ë¡œ í™˜ìŠ¹
 }bus;
 
 struct station a[6][25][80] = 
 {
 	{
 		{
-			{ "ÁöÀÏ¿ª", { NULL }, NULL, NULL, NULL, NULL, NULL, NULL },
-			{ "ÁöÀÌ¿ª", { NULL }, NULL, NULL, NULL, NULL, NULL, NULL }
+			{ "ì§€ì¼ì—­", { NULL }, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ì§€ì´ì—­", { NULL }, NULL, NULL, NULL, NULL, NULL, NULL }
 		}
 	},
 	{
 		{
-			{ "ÁöÁöÀÏ¿ª", { NULL }, NULL, NULL, NULL, NULL, NULL, NULL }
+			{ "ì§€ì§€ì¼ì—­", { NULL }, NULL, NULL, NULL, NULL, NULL, NULL }
 		}
 	}
 };
-		// a[µµ½Ã(0 = ¼­¿ï, 1 = ºÎ»ê, 2 = ´ë±¸, 3 = ±¤ÁÖ, 4 = ´ëÀü, 5 = ÇØ´ç ¾øÀ½)][È£¼±][¿ª]
+		// a[ë„ì‹œ(0 = ì„œìš¸, 1 = ë¶€ì‚°, 2 = ëŒ€êµ¬, 3 = ê´‘ì£¼, 4 = ëŒ€ì „, 5 = í•´ë‹¹ ì—†ìŒ)][í˜¸ì„ ][ì—­]
 struct train b[6][10][20]
 {
 	{
 		{
-			{ "±âÀÏ¿ª", { NULL }, NULL, NULL }
+			{ "ê¸°ì¼ì—­", { NULL }, NULL, NULL }
 		}
 	},
 	{
 		{
-			{ "±â±âÀÏ¿ª", { NULL }, NULL, NULL }
+			{ "ê¸°ê¸°ì¼ì—­", { NULL }, NULL, NULL }
 		}
 	}
 };
 
-// b[µµ½Ã(0 = ¼­¿ï, 1 = ºÎ»ê, 2 = ´ë±¸, 3 = ±¤ÁÖ, 4 = ´ëÀü, 5 = ÇØ´ç ¾øÀ½)][Ã¶µµ(°æºÎ¼±, °æºÎ°í¼Ó¼±, ±¤ÁÖ¼± µî)][¿ª]
+// b[ë„ì‹œ(0 = ì„œìš¸, 1 = ë¶€ì‚°, 2 = ëŒ€êµ¬, 3 = ê´‘ì£¼, 4 = ëŒ€ì „, 5 = í•´ë‹¹ ì—†ìŒ)][ì² ë„(ê²½ë¶€ì„ , ê²½ë¶€ê³ ì†ì„ , ê´‘ì£¼ì„  ë“±)][ì—­]
 struct bus c[6][200][50] =
 {
 	{
 		{
-			{ "¹öÀÏ¿ª", NULL, NULL, NULL },
-			{ "¹öÀÌ¿ª", NULL, NULL, NULL }
+			{ "ë²„ì¼ì—­", NULL, NULL, NULL },
+			{ "ë²„ì´ì—­", NULL, NULL, NULL }
 		}	
 	}
-}; // c[µµ½Ã(0 = ¼­¿ï, 1 = ºÎ»ê, 2 = ´ë±¸, 3 = ±¤ÁÖ, 4 = ´ëÀü, 5 = ÇØ´ç ¾øÀ½)][¹ö½º¹øÈ£][¿ª]
+}; // c[ë„ì‹œ(0 = ì„œìš¸, 1 = ë¶€ì‚°, 2 = ëŒ€êµ¬, 3 = ê´‘ì£¼, 4 = ëŒ€ì „, 5 = í•´ë‹¹ ì—†ìŒ)][ë²„ìŠ¤ë²ˆí˜¸][ì—­]
 
-char s_via[50][50]; // ÁöÇÏÃ¶ °æÀ¯¿ª[
+char s_via[50][50]; // ì§€í•˜ì²  ê²½ìœ ì—­[
 char t_via[50][50];
 char b_via[50][50];
 
@@ -91,28 +91,28 @@ char FIRSTDECOMPOSER_TRANSFER_END[50];
 
 
 
-// << 1Â÷ ºĞÇØÀÚ ÀÔ·Â±¸°£ >>
+// << 1ì°¨ ë¶„í•´ì ì…ë ¥êµ¬ê°„ >>
 
-// Ãâ¹ß¿ª°ú µµÂø¿ªÀ» ÀÔ·ÂÇÏ¸é È¯½Â ±¸°£º°·Î ºĞÇØÇØ, ÃÑ ÇÕ °É¸®´Â ¼Ò¿ä½Ã°£À» ¹İÈ¯ ÇÒ °Í.
+// ì¶œë°œì—­ê³¼ ë„ì°©ì—­ì„ ì…ë ¥í•˜ë©´ í™˜ìŠ¹ êµ¬ê°„ë³„ë¡œ ë¶„í•´í•´, ì´ í•© ê±¸ë¦¬ëŠ” ì†Œìš”ì‹œê°„ì„ ë°˜í™˜ í•  ê²ƒ.
 
-int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í µµÂøÁö(b) ¸¦ ÀÔ·Â¹Ş¾Æ¼­ ±³Åë¼ö´Ü º°·Î ºĞÇØ ÈÄ ¼Ò¿ä½Ã°£ ¹İÈ¯)
-	int s_check; // Ãâ¹ßÁö
+int firstDecomposer(char start[50], char end[50]) { // ìµœì´ˆ ë¶„í•´ì (ì¶œë°œì§€(a) ì™€ ë„ì°©ì§€(b) ë¥¼ ì…ë ¥ë°›ì•„ì„œ êµí†µìˆ˜ë‹¨ ë³„ë¡œ ë¶„í•´ í›„ ì†Œìš”ì‹œê°„ ë°˜í™˜)
+	int s_check; // ì¶œë°œì§€
 	char s_string[25];
 	int s_i;
 	int s_i2;
 	int s_i3;
 
-	int e_check; // µµÂøÁö
+	int e_check; // ë„ì°©ì§€
 	char e_string[25];
 	int e_i;
 	int e_i2;
 	int e_i3;
 
-	printf("First Decomposer ÀÛµ¿À» ÁøÇàÇÕ´Ï´Ù. \n");
+	printf("First Decomposer ì‘ë™ì„ ì§„í–‰í•©ë‹ˆë‹¤. \n");
 
-	printf("¿ª Á¤º¸¸¦ ÀĞ¾î¿À°í ÀÖ½À´Ï´Ù. \n");
+	printf("ì—­ ì •ë³´ë¥¼ ì½ì–´ì˜¤ê³  ìˆìŠµë‹ˆë‹¤. \n");
 
-	for (int i = 0; i < 6; i++) { // ÁöÇÏÃ¶
+	for (int i = 0; i < 6; i++) { // ì§€í•˜ì² 
 		for (int i2 = 0; i2 < 25; i2++) {
 			for (int i3 = 0; i3 < 80; i3++) {
 				if (strcmp(start, a[i][i2][i3].name) == 0) {
@@ -132,7 +132,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 		}
 	}
 
-	for (int i = 0; i < 6; i++) { // Ã¶µµ
+	for (int i = 0; i < 6; i++) { // ì² ë„
 		for (int i2 = 0; i2 < 10; i2++) {
 			for (int i3 = 0; i3 < 20; i3++) {
 				if (strcmp(start, b[i][i2][i3].name) == 0) {
@@ -152,7 +152,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 		}
 	}
 
-	for (int i = 0; i < 4; i++) { // ¹ö½º
+	for (int i = 0; i < 4; i++) { // ë²„ìŠ¤
 		for (int i2 = 0; i2 < 200; i2++) {
 			for (int i3 = 0; i3 < 50; i3++) {
 				if (strcmp(start, c[i][i2][i3].name)) {
@@ -170,40 +170,40 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 				}
 			}
 		}
-	} // ¸ğµç ¿ªÀÇ ÀÌ¸§À» ´ëÁ¶ ÇÑ µÚ, ÀÌ¸§ÀÌ °°Àº ¿ªÀÇ ¹è¿­ ¹øÈ£¿Í ±³Åë¼ö´ÜÀ» ÀúÀå. (1 = ÁöÇÏÃ¶, 2 = Ã¶µµ, 3 = ¹ö½º)
+	} // ëª¨ë“  ì—­ì˜ ì´ë¦„ì„ ëŒ€ì¡° í•œ ë’¤, ì´ë¦„ì´ ê°™ì€ ì—­ì˜ ë°°ì—´ ë²ˆí˜¸ì™€ êµí†µìˆ˜ë‹¨ì„ ì €ì¥. (1 = ì§€í•˜ì² , 2 = ì² ë„, 3 = ë²„ìŠ¤)
 
-	printf("¿ª Á¤º¸ ÀĞ¾î¿À±â ¿Ï·á.\n\n");
-	printf("Ãâ¹ßÁö : %s\n", start);
+	printf("ì—­ ì •ë³´ ì½ì–´ì˜¤ê¸° ì™„ë£Œ.\n\n");
+	printf("ì¶œë°œì§€ : %s\n", start);
 	printf("s_i = %d\n", s_i);
 	printf("s_i2 = %d\n", s_i2);
 	printf("s_i3 = %d\n", s_i3);
 	printf("s_check = %d\n\n", s_check);
 
-	printf("µµÂøÁö : %s\n", end);
+	printf("ë„ì°©ì§€ : %s\n", end);
 	printf("e_i = %d\n", e_i);
 	printf("e_i2 = %d\n", e_i2);
 	printf("e_i3 = %d\n", e_i3);
 	printf("e_check = %d\n", e_check);
 
 	switch (s_i) {
-	case 0: strcpy(s_string, "¼­¿ï¿ª"); break;
-	case 1: strcpy(s_string, "ºÎ»ê¿ª"); break;
-	case 2: strcpy(s_string, "´ë±¸¿ª"); break;
-	case 3: strcpy(s_string, "±¤ÁÖ¿ª"); break;
-	case 4: strcpy(s_string, "´ëÀü¿ª"); break;
+	case 0: strcpy(s_string, "ì„œìš¸ì—­"); break;
+	case 1: strcpy(s_string, "ë¶€ì‚°ì—­"); break;
+	case 2: strcpy(s_string, "ëŒ€êµ¬ì—­"); break;
+	case 3: strcpy(s_string, "ê´‘ì£¼ì—­"); break;
+	case 4: strcpy(s_string, "ëŒ€ì „ì—­"); break;
 	}
 
 	switch (e_i) {
-	case 0: strcpy(e_string, "¼­¿ï¿ª"); break;
-	case 1: strcpy(e_string, "ºÎ»ê¿ª"); break;
-	case 2: strcpy(e_string, "´ë±¸¿ª"); break;
-	case 3: strcpy(e_string, "±¤ÁÖ¿ª"); break;
-	case 4: strcpy(e_string, "´ëÀü¿ª"); break;
+	case 0: strcpy(e_string, "ì„œìš¸ì—­"); break;
+	case 1: strcpy(e_string, "ë¶€ì‚°ì—­"); break;
+	case 2: strcpy(e_string, "ëŒ€êµ¬ì—­"); break;
+	case 3: strcpy(e_string, "ê´‘ì£¼ì—­"); break;
+	case 4: strcpy(e_string, "ëŒ€ì „ì—­"); break;
 	}
 
-	printf("1Â÷ ºĞÇØ¸¦ °³½ÃÇÕ´Ï´Ù.\n");
+	printf("1ì°¨ ë¶„í•´ë¥¼ ê°œì‹œí•©ë‹ˆë‹¤.\n");
 
-	if (s_check == e_check) { // °æ¿ì¿¡ µû¶ó ³ª´«´Ù (±³Åë ¼ö´ÜÀÌ °°À» °æ¿ì)
+	if (s_check == e_check) { // ê²½ìš°ì— ë”°ë¼ ë‚˜ëˆˆë‹¤ (êµí†µ ìˆ˜ë‹¨ì´ ê°™ì„ ê²½ìš°)
 
 		printf("s_check == e_check\n");
 
@@ -214,7 +214,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 				switch (e_i) {
 				case 0: printf("Error Number : 0000\n"); break;
 				default:
-					printf("case : 1-0-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 1-0-D ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					secondDecomposerStation(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -229,7 +229,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 				switch (e_i) {
 				case 1: printf("Error Number : 0000\n"); break;
 				default:
-					printf("case : 1-1-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 1-1-D ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					secondDecomposerStation(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -244,7 +244,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 				switch (e_i) {
 				case 2: printf("Error Number : 0000\n"); break;
 				default:
-					printf("case : 1-2-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 1-2-D ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 					secondDecomposerStation(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
 					secondDecomposerStation(e_string, end);
@@ -258,7 +258,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 				switch (e_i) {
 				case 3: printf("Error Number : 0000\n"); break;
 				default:
-					printf("case : 1-3-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 1-3-D ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					secondDecomposerStation(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -273,7 +273,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 				switch (e_i) {
 				case 4: printf("Error Number : 0000\n"); break;
 				default:
-					printf("case : 1-4-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 1-4-D ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					secondDecomposerStation(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -287,7 +287,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 			}
 		}
 				else {
-					printf("case : 1-E-: ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 1-E-: ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					secondDecomposerStation(start, end);
 
@@ -299,37 +299,37 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 			case 0:
 				switch (e_i) {
 				case 0: printf("Error Number : 0000\n"); break;
-				default: printf("case : 2-0-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n"); secondDecomposerTrain(s_string, e_string);
+				default: printf("case : 2-0-D ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n"); secondDecomposerTrain(s_string, e_string);
 					printf("2. %s, %s\n", s_string, e_string); break;
 				}; break;
 			case 1:
 				switch (e_i) {
 				case 1: printf("Error Number : 0000\n"); break;
-				default: printf("case : 2-1-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n"); secondDecomposerTrain(s_string, e_string);
+				default: printf("case : 2-1-D ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n"); secondDecomposerTrain(s_string, e_string);
 					printf("2. %s, %s\n", s_string, e_string); break;
 				}; break;
 			case 2:
 				switch (e_i) {
 				case 2: printf("Error Number : 0000\n"); break;
-				default: printf("case : 2-2-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n"); secondDecomposerTrain(s_string, e_string);
+				default: printf("case : 2-2-D ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n"); secondDecomposerTrain(s_string, e_string);
 					printf("2. %s, %s\n", s_string, e_string); break;
 				}; break;
 			case 3:
 				switch (e_i) {
 				case 3: printf("Error Number : 0000\n"); break;
-				default: printf("case : 2-3-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n"); secondDecomposerTrain(s_string, e_string);
+				default: printf("case : 2-3-D ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n"); secondDecomposerTrain(s_string, e_string);
 					printf("2. %s, %s\n", s_string, e_string); break;
 				}; break;
 			case 4:
 				switch (e_i) {
 				case 4: printf("Error Number : 0000\n"); break;
-				default: printf("case : 2-4-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n"); secondDecomposerTrain(s_string, e_string);
+				default: printf("case : 2-4-D ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n"); secondDecomposerTrain(s_string, e_string);
 					printf("2. %s, %s\n", s_string, e_string); break;
 				}; break;
 			}
 		}
 				else {
-					printf("case : 2-E-: ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 2-E-: ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					secondDecomposerTrain(start, end);
 
@@ -342,7 +342,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 				switch (e_i) {
 				case 0: printf("Error Number : 0000\n"); break;
 				default:
-					printf("case : 3-0-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 3-0-D ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -357,7 +357,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 				switch (e_i) {
 				case 1: printf("Error Number : 0000\n"); break;
 				default:
-					printf("case : 3-1-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 3-1-D ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -372,7 +372,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 				switch (e_i) {
 				case 2: printf("Error Number : 0000\n"); break;
 				default:
-					printf("case : 3-2-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 3-2-D ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -387,7 +387,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 				switch (e_i) {
 				case 3: printf("Error Number : 0000\n"); break;
 				default:
-					printf("case : 3-3-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 3-3-D ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -402,7 +402,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 				switch (e_i) {
 				case 4: printf("Error Number : 0000\n"); break;
 				default:
-					printf("case : 3-4-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 3-4-D ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -416,7 +416,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 			}
 		}
 				else {
-					printf("case : 3-E-: ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 3-E-: ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					secondDecomposerBus(start, end);
 
@@ -435,7 +435,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 			case 1: printf("Error Number : 0001\n"); break;
 			case 2: 
 				if (s_i != e_i) {
-					printf("case : 1-2-I ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 1-2-I ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					secondDecomposerStation(start, s_string);
 					secondDecomposerTrain(s_string, end);
@@ -444,7 +444,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 					printf("2. %s, %s\n", s_string, end);
 				}
 				else {
-					printf("case : 1-2-E ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 1-2-E ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					findSameCityTransferStation(e_i, e_i2, e_i3, s_check, e_check);
 					secondDecomposerStation(start, FIRSTDECOMPOSER_TRANSFER_START);
@@ -454,7 +454,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 				break;
 			case 3: 
 				if (s_i != e_i) {
-					printf("case : 1-3-I ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 1-3-I ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					secondDecomposerStation(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -465,7 +465,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 					printf("3. %s, %s\n", e_string, end);
 				}
 				else {
-					printf("case : 1-3-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 1-3-D ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					findSameCityTransferStation(e_i, e_i2, e_i3, s_check, e_check);
 					secondDecomposerStation(start, FIRSTDECOMPOSER_TRANSFER_START);
@@ -480,7 +480,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 			switch (e_check) {
 			case 1: 
 				if (s_i != e_i) {
-					printf("case : 2-1-I ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 2-1-I ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					secondDecomposerTrain(s_string, e_string);
 					secondDecomposerStation(e_string, end);
@@ -489,7 +489,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 					printf("3. %s, %s\n", e_string, end);
 				}
 				else {
-					printf("case : 2-1-E ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 2-1-E ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					secondDecomposerStation(start, end);
 
@@ -499,7 +499,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 			case 2: printf("Error Number : 0001\n"); break;
 			case 3: 
 				if (s_i != e_i) {
-					printf("case : 2-3-I ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 2-3-I ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					secondDecomposerTrain(s_string, e_string);
 					secondDecomposerBus(e_string, end);
@@ -508,7 +508,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 					printf("3. %s, %s\n", e_string, end);
 				}
 				else {
-					printf("case : 2-3-E ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 2-3-E ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					secondDecomposerBus(start, end);
 
@@ -520,7 +520,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 			switch (e_check) {
 			case 1: 
 				if (s_i != e_i) {
-					printf("case : 3-1-I ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 3-1-I ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -531,7 +531,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 					printf("3. %s, %s\n", e_string, end);
 				}
 				else {
-					printf("case : 3-1-E ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 3-1-E ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					findSameCityTransferStation(e_i, e_i2, e_i3, s_check, e_check);
 					secondDecomposerBus(start, FIRSTDECOMPOSER_TRANSFER_START);
@@ -543,7 +543,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 				break;
 			case 2: 
 				if (s_i != e_i) {
-					printf("case : 3-2-I ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 3-2-I ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -552,7 +552,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 					printf("2. %s, %s\n", s_string, e_string);
 				}
 				else {
-					printf("case : 3-2-E ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
+					printf("case : 3-2-E ì‘ì—…ì´ í™•ì¸ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 
 					findSameCityTransferStation(e_i, e_i2, e_i3, s_check, e_check);
 					secondDecomposerBus(start, FIRSTDECOMPOSER_TRANSFER_START);
@@ -567,15 +567,15 @@ int firstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºĞÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 		}
 	}
 
-	printf("1Â÷ ºĞÇØ Á¾·á.\n");
-	printf("First Decomposer Á¾·á.\n");
+	printf("1ì°¨ ë¶„í•´ ì¢…ë£Œ.\n");
+	printf("First Decomposer ì¢…ë£Œ.\n");
 
 	return 0;
 }
 
 void findSameCityTransferStation(int e_i, int e_i2, int e_i3, int s_check, int e_check) {
 	switch (s_check) {
-	case 1: // ÁöÇÏÃ¶
+	case 1: // ì§€í•˜ì² 
 		switch (e_check) {
 		case 1: printf("Error Number : 0002\n"); break;
 		case 2:
@@ -613,7 +613,7 @@ void findSameCityTransferStation(int e_i, int e_i2, int e_i3, int s_check, int e
 				}
 			}; break;
 		}; break;
-	case 2: // Ã¶µµ
+	case 2: // ì² ë„
 		switch (e_check) {
 		case 1:
 			for (int i2 = e_i2; i2 < 25; i2++) {
@@ -651,7 +651,7 @@ void findSameCityTransferStation(int e_i, int e_i2, int e_i3, int s_check, int e
 				}
 			}; break;
 		}; break;
-	case 3: // ¹ö½º
+	case 3: // ë²„ìŠ¤
 		switch (e_check) {
 		case 1:
 			for (int i2 = e_i2; i2 < 25; i2++) {
@@ -695,34 +695,34 @@ void findSameCityTransferStation(int e_i, int e_i2, int e_i3, int s_check, int e
  
 
 
-// << 2Â÷ ºĞÇØÀÚ ÀÔ·Â±¸°£ >>
+// << 2ì°¨ ë¶„í•´ì ì…ë ¥êµ¬ê°„ >>
 
-// 2Â÷ ºĞÇØÀÚ(secondDecomposer~~) ´Â Ãâ¹ßÁö¿Í µµÂøÁö¸¦ ÀÔ·Â ¹Ş¾Æ¼­ ~~ ¿¡ ¼­¼úµÈ ±³Åë¼ö´ÜÀÇ È¯½Â ¿ª º°·Î ºĞÇØ ÈÄ, ¼Ò¿ä½Ã°£ ¹İÈ¯.
+// 2ì°¨ ë¶„í•´ì(secondDecomposer~~) ëŠ” ì¶œë°œì§€ì™€ ë„ì°©ì§€ë¥¼ ì…ë ¥ ë°›ì•„ì„œ ~~ ì— ì„œìˆ ëœ êµí†µìˆ˜ë‹¨ì˜ í™˜ìŠ¹ ì—­ ë³„ë¡œ ë¶„í•´ í›„, ì†Œìš”ì‹œê°„ ë°˜í™˜.
 
-// Áßº¹ »ç¿ëÀ» ¹æÁöÇÏ±â À§ÇÏ¿© Àü¿ª º¯¼ö »ç¿ë½Ã, º¯¼öÀÇ ¾Õ¿¡ ÀÚ½ÅÀÇ ÀÌ¸§ ÀÌ´Ï¼ÈÀ» ºÙÀÏ °Í.
-// Ãâ¹ßÁö¿¡¼­ µµÂøÁö·Î ÇâÇÏ´Â °úÁ¤¿¡ °æÀ¯ÇÏ°Ô µÇ´Â ¿ªÀÇ ÀÌ¸§À» s_via (ÁöÇÏÃ¶), t_via (±âÂ÷), b_via (¹ö½º) ¿¡ ¼ø¼­´ë·Î »ğÀÔ ÇÒ °Í.
+// ì¤‘ë³µ ì‚¬ìš©ì„ ë°©ì§€í•˜ê¸° ìœ„í•˜ì—¬ ì „ì—­ ë³€ìˆ˜ ì‚¬ìš©ì‹œ, ë³€ìˆ˜ì˜ ì•ì— ìì‹ ì˜ ì´ë¦„ ì´ë‹ˆì…œì„ ë¶™ì¼ ê²ƒ.
+// ì¶œë°œì§€ì—ì„œ ë„ì°©ì§€ë¡œ í–¥í•˜ëŠ” ê³¼ì •ì— ê²½ìœ í•˜ê²Œ ë˜ëŠ” ì—­ì˜ ì´ë¦„ì„ s_via (ì§€í•˜ì² ), t_via (ê¸°ì°¨), b_via (ë²„ìŠ¤) ì— ìˆœì„œëŒ€ë¡œ ì‚½ì… í•  ê²ƒ.
 
-int secondDecomposerStation(char a[50], char b[50]) { // ¾ÈÀº±Ô (ÁöÇÏÃ¶)
-
-	return 0;
-}
-
-int secondDecomposerTrain(char a[50], char b[50]) { // ±è¼¼ÈÆ (Ã¶µµ)
+int secondDecomposerStation(char a[50], char b[50]) { // ì•ˆì€ê·œ (ì§€í•˜ì² )
 
 	return 0;
 }
 
-int secondDecomposerBus(char a[50], char b[50]) { // ¹Úµ¿±Ô (¹ö½º)
+int secondDecomposerTrain(char a[50], char b[50]) { // ê¹€ì„¸í›ˆ (ì² ë„)
+
+	return 0;
+}
+
+int secondDecomposerBus(char a[50], char b[50]) { // ë°•ë™ê·œ (ë²„ìŠ¤)
 
 	return 0;
 }
 
 
-// << ¸ŞÀÎ ÇÔ¼ö ÀÔ·Â±¸°£ >>
+// << ë©”ì¸ í•¨ìˆ˜ ì…ë ¥êµ¬ê°„ >>
 
 int main()
 { 
-	firstDecomposer("ÁöÀÏ¿ª", "±â±âÀÏ¿ª");
+	firstDecomposer("ì§€ì¼ì—­", "ê¸°ê¸°ì¼ì—­");
 
     return 0;
 }
