@@ -11,7 +11,7 @@ typedef struct bus;
 
 typedef struct station { // 지하철 역 정보
 	char name[50];
-	int time[2][24][20];
+	int time[2];
 
 	struct station *w; // 지하철 환승 1
 	struct station *a; // 지하철 환승 2
@@ -704,6 +704,7 @@ void findSameCityTransferStation(int e_i, int e_i2, int e_i3, int s_check, int e
 
 int secondDecomposerStation(char a[50], char b[50]) { // 안은규 (지하철)
 
+	
 	return 0;
 }
 
