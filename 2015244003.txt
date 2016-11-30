@@ -1,83 +1,2167 @@
-// 2015244003.cpp : ÏΩòÏÜî ÏùëÏö© ÌîÑÎ°úÍ∑∏Îû®Ïóê ÎåÄÌïú ÏßÑÏûÖÏ†êÏùÑ Ï†ïÏùòÌï©ÎãàÎã§.
+// 2015244003.cpp : ƒ‹º÷ ¿¿øÎ «¡∑Œ±◊∑•ø° ¥Î«— ¡¯¿‘¡°¿ª ¡§¿««’¥œ¥Ÿ.
 // 
 
-#include "stdafx.h"
-#define N 50; // ÏµúÎåÄ Ïó≠ Ïù¥Î¶Ñ Í∏∏Ïù¥
+#include <stdio.h>
+#include <windows.h>
+#include <stdlib.h>
+#include <string.h>
 
-// << Ïó≠ Ï†ïÎ≥¥ ÏûÖÎ†• Íµ¨Í∞Ñ >> (Ìó§Îçî ÌååÏùºÌôî Ìï† Í≤ÉÏûÑ)
+#define N 50; // √÷¥Î ø™ ¿Ã∏ß ±Ê¿Ã
+
+// << ø™ ¡§∫∏ ¿‘∑¬ ±∏∞£ >> («Ï¥ı ∆ƒ¿œ»≠ «“ ∞Õ¿”)
 typedef struct station;
 typedef struct train;
 typedef struct bus;
 
-typedef struct station { // ÏßÄÌïòÏ≤† Ïó≠ Ï†ïÎ≥¥
+typedef struct station { // ¡ˆ«œ√∂ ø™ ¡§∫∏
 	char name[50];
 	int time[2];
 
-	struct station *w; // ÏßÄÌïòÏ≤† ÌôòÏäπ 1
-	struct station *a; // ÏßÄÌïòÏ≤† ÌôòÏäπ 2
-	struct station *s; // ÏßÄÌïòÏ≤† ÌôòÏäπ 3
-	struct station *d; // ÏßÄÌïòÏ≤† ÌôòÏäπ 4
-	struct train *tr; // Í∏∞Ï∞®Î°ú ÌôòÏäπ
-	struct bus *bu; // Î≤ÑÏä§Î°ú ÌôòÏäπ
+	struct station *w; // ¡ˆ«œ√∂ »ØΩ¬ 1
+	struct station *a; // ¡ˆ«œ√∂ »ØΩ¬ 2
+	struct station *s; // ¡ˆ«œ√∂ »ØΩ¬ 3
+	struct station *d; // ¡ˆ«œ√∂ »ØΩ¬ 4
+	struct train *tr; // ±‚¬˜∑Œ »ØΩ¬
+	struct bus *bu; // πˆΩ∫∑Œ »ØΩ¬
 }station;
 
-typedef struct train { // Í∏∞Ï∞® Ïó≠ Ï†ïÎ≥¥
+typedef struct train { // ±‚¬˜ ø™ ¡§∫∏
 	char name[50];
 	int time[2][24];
 
-	struct station *st; // ÏßÄÌïòÏ≤†Î°ú ÌôòÏäπ
-	struct bus *bu; // Î≤ÑÏä§Î°ú ÌôòÏäπ
+	struct station *st; // ¡ˆ«œ√∂∑Œ »ØΩ¬
+	struct bus *bu; // πˆΩ∫∑Œ »ØΩ¬
 }train;
 
-typedef struct bus { // Î≤ÑÏä§ Ïó≠ Ï†ïÎ≥¥
+typedef struct bus { // πˆΩ∫ ø™ ¡§∫∏
 	char name[50];
 	int time[2][24];
 
-	struct station *st; // ÏßÄÌïòÏ≤†Î°ú ÌôòÏäπ
-	struct train *tr; // Î≤ÑÏä§Î°ú ÌôòÏäπ
+	struct station *st; // ¡ˆ«œ√∂∑Œ »ØΩ¬
+	struct train *tr; // πˆΩ∫∑Œ »ØΩ¬
 }bus;
 
-struct station a[6][25][80] = 
+station a[6][25][80] = 
 {
-	{
-		{
-			{ "ÏßÄÏùºÏó≠", { NULL }, NULL, NULL, NULL, NULL, NULL, NULL },
-			{ "ÏßÄÏù¥Ïó≠", { NULL }, NULL, NULL, NULL, NULL, NULL, NULL }
+	{ // º≠øÔ
+		{ // 1»£º± (¿Œ√µ ~ º“ø‰ªÍ)
+			{ "¿Œ√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µø¿Œ√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µµø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡¶π∞∆˜", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µµ»≠", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡÷æ»", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞£ºÆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µøæÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πÈøÓ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫Œ∆Ú", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫Œ∞≥", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º€≥ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ﬂµø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫Œ√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º“ªÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø™∞Ó", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¬ºˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¿∑˘µø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞≥∫¿", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±∏¿œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±∏∑Œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈µµ∏≤", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øµµÓ∆˜", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈±Ê", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥ÎπÊ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥Î∑Æ¡¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øÎªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥≤øµ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠øÔø™", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω√√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡æ∞¢", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡æ∑Œ3∞°", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡æ∑Œ5∞°", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µø¥ÎπÆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µøπ¶æ’", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈º≥µø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡¶±‚µø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√ª∑Æ∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»∏±‚", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø‹¥Îæ’", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈¿ÃπÆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºÆ∞Ë", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±§øÓ¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø˘∞Ë", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥Ï√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√¢µø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πÊ«–", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µµ∫¿", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µµ∫¿ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏¡ø˘ªÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»∏∑Ê", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿«¡§∫Œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞°¥…", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥ÏæÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æÁ¡÷", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥ˆ∞Ë", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥ˆ¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ˆ«‡", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µøµŒ√µ¡ﬂæ”", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫∏ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µøµŒ√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º“ø‰ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // 1»£º± (±∏∑Œ ~ Ω≈√¢)
+			{ "±∏∑Œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞°ªÍµ¡ˆ≈–¥‹¡ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µ∂ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±›√µ±∏√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºÆºˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞¸æ«", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æ»æÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏Ì«–", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±›¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±∫∆˜", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Á¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿«ø’", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º∫±’∞¸¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»≠º≠", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºº∑˘", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫¥¡°", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºº∏∂", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¿ªÍ¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¿ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡¯¿ß", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º€≈∫", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠¡§∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ˆ¡¶", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∆Ú≈√", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º∫»Ø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡˜ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µŒ¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√µæ»", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫¿∏Ì", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω÷øÎ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æ∆ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≈¡¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πËπÊ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¬æÁø¬√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈√¢", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±§∏Ì", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠µø≈∫", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // 2»£º±
+			{ "Ω≈µµ∏≤", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πÆ∑°", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øµµÓ∆˜±∏√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥ÁªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«’¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»´¥Î¿‘±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈√Ã", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Ã¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æ∆«ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√Ê¡§∑Œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω√√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿ª¡ˆ∑Œ¿‘±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿ª¡ˆ∑Œ3∞°", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿ª¡ˆ∑Œ4∞°", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µø¥ÎπÆø™ªÁπÆ»≠∞¯ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈¥Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÛø’Ω ∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø’Ω ∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«—æÁ¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∂“º∂", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º∫ºˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞«¥Î¿‘±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±∏¿«", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞≠∫Ø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿·Ω«≥™∑Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿·Ω«", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡æ«’øÓµø¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÔº∫", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º±∏™", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø™ªÔ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞≠≥≤", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±≥¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠√ ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πÊπË", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÁ¥Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥´º∫¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠øÔ¥Î¿‘±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫¿√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈∏≤", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈¥ÎπÊ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±∏∑Œµ¡ˆ≈–¥‹¡ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Î∏≤", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈µµ∏≤", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // 2»£º± (±Óƒ°ªÍ ~ Ω≈µµ∏≤)
+			{ "±Óƒ°ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈¡§≥◊∞≈∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æÁ√µ±∏√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µµ∏≤√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈µµ∏≤", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+                },
+		{ // 2»£º± (Ω≈µµ∏≤ ~ º∫ºˆ)
+			{ "Ω≈º≥µø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øÎµŒ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈¥‰", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øÎ¥‰", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º∫ºˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // 3»£º±
+			{ "¥Î»≠", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡÷ø±", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡§πﬂªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏∂µŒ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πÈºÆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Î∞Ó", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»≠¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¯¥Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¯»‰", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÔº€", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ˆ√‡", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±∏∆ƒπﬂ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¨Ω≈≥ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫“±§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥Ïπ¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»´¡¶", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "π´æ«¿Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µ∂∏≥πÆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Ê∫π±√", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æ»±π", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡æ∑Œ3∞°", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿ª¡ˆ∑Œ3∞°", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√Êπ´∑Œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µø¥Î¿‘±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æ‡ºˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±›»£", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¿ºˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æ–±∏¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈ªÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿·ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Ìº”≈ÕπÃ≥Œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±≥¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥≤∫Œ≈ÕπÃ≥Œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æÁ¿Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏≈∫¿", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µµ±π", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Îƒ°", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«–ø©øÔ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Î√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿œø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆº≠", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞°∂ÙΩ√¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Ê¬˚∫¥ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¿±›", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // 4»£º±
+			{ "¥Á∞Ì∞≥", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÛ∞Ë", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥Îø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√¢µø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω÷πÆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆ¿Ø(∞≠∫œ±∏√ª)", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πÃæ∆", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πÃæ∆ªÔ∞≈∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±Ê¿Ω", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º∫Ω≈ø©¥Î¿‘±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«—º∫¥Î¿‘±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«˝»≠", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µø¥ÎπÆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µø¥ÎπÆø™ªÁπÆ»≠∞¯ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√Êπ´∑Œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏Ìµø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»∏«ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠øÔø™", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º˜¥Î¿‘±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÔ∞¢¡ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈øÎªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Ã√Ã", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µø¿€", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√—Ω≈¥Î¿‘±∏(¿Ãºˆ)", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÁ¥Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥≤≈¬∑…", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º±πŸ¿ß", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Ê∏∂∞¯ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Î∞¯ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞˙√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡§∫Œ∞˙√µ√ªªÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Œ¥ˆø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∆Ú√Ã", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "π¸∞Ë", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±›¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÍ∫ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆ∏ÆªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥ÎæﬂπÃ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "π›ø˘", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÛ∑œºˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«—¥Îæ’", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ﬂæ”", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Ì¿‹", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√ ¡ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æ»ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈±Êø¬√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡§ø’", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¿¿Ãµµ", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // 5»£º±
+			{ "πÊ»≠", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞≥»≠ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±Ë∆˜∞¯«◊", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º€¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏∂∞Ó", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πﬂªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øÏ¿ÂªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»≠∞Ó", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±Óƒ°ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏Òµø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¿∏Ò±≥", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æÁ∆Ú", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øµµÓ∆˜±∏√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øµµÓ∆˜Ω√¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈±Ê", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø©¿«µµ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø©¿«≥™∑Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏∂∆˜", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞¯¥ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æ÷ø¿∞≥", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√Ê¡§∑Œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠¥ÎπÆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞≠»≠πÆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡æ∑Œ3∞°", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿ª¡ˆ∑Œ4∞°", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µø¥ÎπÆø™ªÁπÆ»≠∞¯ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√ª±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈±›»£", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«‡¥Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø’Ω ∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏∂¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥‰Ω ∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Â«—∆Ú", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±∫¿⁄", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æ∆¬˜ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±§≥™∑Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√µ»£", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞≠µø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±Êµø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±¡¿∫¥Ÿ∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏Ì¿œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Ì¥ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÛ¿œµø", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // 6»£º±
+			{ "∫¿»≠ªÍ(º≠øÔ¿«∑·ø¯)", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»≠∂˚¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≈¬∏™¿‘±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºÆ∞Ë", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µπ∞˘¿Ã", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÛø˘∞Ó", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø˘∞Ó", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Ì∑¡¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æ»æœ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫∏πÆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√¢Ω≈", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µøπ¶æ’", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈¥Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√ª±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æ‡ºˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πˆ∆º∞Ì∞≥", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«—∞≠¡¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Ã≈¬ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥ÏªÁ∆Ú(øÎªÍ±∏√ª)", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÔ∞¢¡ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»ø√¢∞¯ø¯æ’", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞¯¥ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Î»Ô", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±§»Ô√¢", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÛºˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«’¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏¡ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏∂∆˜±∏√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø˘µÂƒ≈∞Ê±‚¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µ¡ˆ≈–πÃµæÓΩ√∆º", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ıªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªı¿˝", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿¿æœ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø™√Ã", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫“±§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µ∂πŸ¿ß", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¨Ω≈≥ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±∏ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // 7»£º±
+			{ "¿Âæœ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µµ∫¿ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆ∂ÙªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏∂µÈ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥Îø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ﬂ∞Ë", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«œ∞Ë", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞¯∏™", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≈¬∏™¿‘±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏‘∞Ò", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ﬂ»≠", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÛ∫¿", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏È∏Ò", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÁ∞°¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øÎ∏∂ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ﬂ∞Ó", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±∫¿⁄", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æÓ∏∞¿Ã¥Î∞¯ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞«¥Î¿‘±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∂“º∂¿Øø¯¡ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√ª¥„", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞≠≥≤±∏√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«–µø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥Ì«ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "π›∆˜", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Ìº”≈ÕπÃ≥Œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥ªπÊ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√—Ω≈¥Î¿‘±∏(¿Ãºˆ)", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥≤º∫", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º˛Ω«¥Î¿‘±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÛµµ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿ÂΩ¬πË±‚", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈¥ÎπÊªÔ∞≈∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫∏∂Û∏≈", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈«≥", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Î∏≤", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥≤±∏∑Œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞°ªÍµ¡ˆ≈–¥‹¡ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√∂ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±§∏ÌªÁ∞≈∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√µø’", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¬ºˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±Óƒ°øÔ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫Œ√µ¡æ«’øÓµø¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√·¿«", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈¡ﬂµø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫Œ√µΩ√√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÛµø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÔªÍ√º¿∞∞¸", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±º∆˜√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫Œ∆Ú±∏√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // 8»£º± (æœªÁ~∏∂ı
+			{ "æœªÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√µ»£", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞≠µø±∏√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏˘√Ã≈‰º∫", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºÆ√Ã", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º€∆ƒ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞°∂ÙΩ√¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πÆ¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Â¡ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫π¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÍº∫", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥≤«—ªÍº∫¿‘±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥‹¥Îø¿∞≈∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈»Ô", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆ¡¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏∂ı", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // 9»£º± (∞≥»≠~¡æ«’øÓµø¿Â)
+			{ "∞≥»≠", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±Ë∆˜∞¯«◊", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞¯«◊Ω√¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈πÊ»≠", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏∂∞Ó≥™∑Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æÁ√µ«‚±≥", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞°æÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ıπÃ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µÓ√Ã", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø∞√¢", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈∏Òµø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º±¿Øµµ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥ÁªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±π»∏¿«ªÁ¥Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø©¿«µµ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ª˚∞≠", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥Î∑Æ¡¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥ÎµÈ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»ÊºÆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µø¿€", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±∏π›∆˜", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈π›∆˜", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Ìº”≈ÕπÃ≥Œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠∆Ú", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈≥Ì«ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æ¡÷", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º±¡§∏™", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÔº∫¡ﬂæ”", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫¿¿∫ªÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡æ«’øÓµø¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // ¿Œ√µ1 (∞ËæÁ~±π¡¶æ˜π´¡ˆ±∏)
+			{ "∞ËæÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±÷«ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "π⁄√Ã", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿”«–", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞ËªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Ê¿Œ±≥¥Î¿‘±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿€¿¸", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞•ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫Œ∆Ú±∏√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫Œ∆ÚΩ√¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫Œ∆Ú", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µøºˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫Œ∆ÚªÔ∞≈∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞£ºÆø¿∞≈∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Œ√µΩ√√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øπº˙»∏∞¸", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Œ√µ≈ÕπÃ≥Œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πÆ«–∞Ê±‚¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º±«–", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈ø¨ºˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¯¿Œ¿Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µø√·", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µø∏∑", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ƒ∑∆€Ω∫≈∏øÓ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≈◊≈©≥Î∆ƒ≈©", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ˆΩƒ¡§∫∏¥‹¡ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Œ√µ¥Î¿‘±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºæ∆Æ∑≤∆ƒ≈©", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±π¡¶æ˜π´¡ˆ±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // ¿Œ√µ2 (∞À¥‹ø¿∑˘~øÓø¨)
+			{ "∞À¥‹ø¿∑˘", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø’±Ê", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞À¥‹ªÁ∞≈∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏∂¿¸", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øœ¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µ∂¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Àæœ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞ÀπŸ¿ß", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æ∆Ω√æ∆µÂ∞Ê±‚¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠±∏√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞°¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞°¡§¡ﬂæ”Ω√¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºÆ≥≤", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠∫Œø©º∫»∏∞¸", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Œ√µ∞°¡¬", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞°¿ÁøÔ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡÷æ»±π∞°ªÍ¥‹", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡÷∏∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω√πŒ∞¯ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºÆπŸ¿ßΩ√¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Œ√µΩ√√¢", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºÆ√µªÁ∞≈∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏∑°≥ªΩ√¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏∏ºˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥≤µø±∏√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Œ√µ¥Î∞¯ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øÓø¨", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // ∫–¥Á (ø’Ω ∏Æ~ºˆø¯)
+			{ "ø’Ω ∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠øÔΩ£", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æ–±∏¡§∑Œµ•ø¿", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞≠≥≤±∏√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º±¡§∏™", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º±∏™", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«—∆º", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µµ∞Ó", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±∏∑Ê", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞≥∆˜µø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Î∏ªÍ¿‘±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆº≠", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫π¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞°√µ¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≈¬∆Ú", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏∂ı", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æﬂ≈æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Ã∏≈", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠«ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆ≥ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡§¿⁄", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πÃ±›", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¿∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡◊¿¸", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫∏¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±∏º∫", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈∞•", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±‚»Ô", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÛ∞•", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√ª∏Ì", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øµµø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏¡∆˜", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏≈≈∫±«º±", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆø¯Ω√√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏≈±≥", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // Ω≈∫–¥Á (∞≠≥≤~±§±≥)
+			{ "∞≠≥≤", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æÁ¿Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æÁ¿ÁΩ√πŒ¿«Ω£", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√ª∞ËªÍ¿‘±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∆«±≥", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡§¿⁄", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µø√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆ¡ˆ±∏√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º∫∫œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÛ«ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±§±≥¡ﬂæ”", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±§±≥", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // ∞Ê¿«¡ﬂæ” (πÆªÍ~º≠øÔø™)
+			{ "πÆªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∆ƒ¡÷", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø˘∑’", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±›√Ã", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±›∏™", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øÓ¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æﬂ¥Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≈∫«ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿œªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«≥ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πÈ∏∂", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±πªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Î±π", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥…∞Ó", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«‡Ω≈", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞≠∏≈", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»≠¿¸", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆªˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µ¡ˆ≈–πÃµæÓΩ√∆º", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞°¡¬", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈√Ã", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠øÔø™", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // ∞Ê¿«¡ﬂæ” (πÆªÍ~øÎπÆ)
+			{ "πÆªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∆ƒ¡÷", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø˘∑’", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±›√Ã", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±›∏™", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øÓ¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æﬂ¥Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≈∫«ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿œªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«≥ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πÈ∏∂", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±πªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Î±π", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥…∞Ó", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«‡Ω≈", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞≠∏≈", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»≠¿¸", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆªˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µ¡ˆ≈–πÃµæÓΩ√∆º", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞°¡¬", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»´¥Î¿‘±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠∞≠¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞¯¥ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»ø√¢∞¯ø¯æ’", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øÎªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Ã√Ã", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠∫˘∞Ì", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«—≥≤", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¡ºˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿¿∫¿", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø’Ω ∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√ª∑Æ∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»∏±‚", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ﬂ∂˚", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÛ∫¿", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏¡øÏ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æÁø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±∏∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µµ≥Û", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æÁ¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥ˆº“", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µµΩ…", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∆»¥Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øÓ±ÊªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æÁºˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±πºˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æ∆Ω≈", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¿∫Û", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æÁ∆Ú", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¯¥ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øÎπÆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // ∞Ê√·
+			{ "√ª∑Æ∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»∏±‚", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ﬂ∂˚", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÛ∫¿", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏¡øÏ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈≥ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞•∏≈", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫∞≥ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≈∞Ëø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÁ∏™", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∆Ú≥ª»£∆Ú", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√µ∏∂ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏∂ºÆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Îº∫∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√∑∆Ú", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÛ√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞°∆Ú", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±º∫¿ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πÈæÁ∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞≠√Ã", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±Ë¿Ø¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥≤√·√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√·√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // ∞¯«◊
+			{ "º≠øÔø™", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞¯¥ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»´¥Î¿‘±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µ¡ˆ≈–πÃµæÓΩ√∆º", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±Ë∆˜∞¯«◊", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞ËæÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Àæœ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√ª∂Û±π¡¶µµΩ√", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øµ¡æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øÓº≠", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞¯«◊»≠π∞√ªªÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Œ√µ±π¡¶∞¯«◊", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // ¿«¡§∫Œ
+			{ "≈æºÆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º€ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æÓ∑Ê", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Ô¡¶", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»ø¿⁄", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Ê±‚µµ√ª∫œ∫Œ√∑ªÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªı∏ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µøø¿", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿«¡§∫Œ¡ﬂæ”", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»Ôº±", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿«¡§∫ŒΩ√√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Ê¿¸√∂¿«¡§∫Œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "π¸∞Ò", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»∏∑Ê", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πﬂ∞Ó", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // ºˆ¿Œ
+			{ "ø¿¿Ãµµ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥ﬁø˘", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø˘∞˘", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º“∑°∆˜±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Œ√µ≥Ì«ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»£±∏∆˜", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥≤µø¿Œ¥ıΩ∫∆ƒ≈©", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¯¿Œ¿Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¨ºˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º€µµ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Œ«œ¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º˛¿«", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈∆˜", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Œ√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // ø°πˆ∂Û¿Œ
+			{ "¿¸¥Îø°πˆ∑£µÂ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µ–¿¸", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫∏∆Ú", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Ì¡¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øÓµø¿Âº€¥„¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±Ë∑Æ¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏Ì¡ˆ¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω√√ªøÎ¿Œ¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÔ∞°", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√ ¥Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µøπÈ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æÓ¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ˆºÆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞≠≥≤¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±‚»Ô", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // ¿⁄±‚∫ŒªÛ
+			{ "øÎ¿Ø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øˆ≈Õ∆ƒ≈©", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±π¡¶æ˜π´¥‹¡ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«’µø√ªªÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Â±‚¡÷¬˜¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Œ√µ±π¡¶∞¯«◊", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // ∞Ê∞≠
+			{ "ø©¡÷", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºº¡æ¥Îø’∏™", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫Œπﬂ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Ã√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈µ–µµøπ√Ã", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Ô¡ˆæœ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√ ø˘", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Ê±‚±§¡÷", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÔµø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Ã∏≈", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∆«±≥", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
 		}
 	},
-	{
-		{
-			{ "ÏßÄÏßÄÏùºÏó≠", { NULL }, NULL, NULL, NULL, NULL, NULL, NULL }
+	{ // ∫ŒªÍ
+		{ // 1»£º±
+			{ "≥Î∆˜", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "π¸æÓªÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥≤ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µŒΩ«", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±∏º≠", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Â¿¸", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫ŒªÍ¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¬√µ¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øµ∑˚", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µø∑°", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±≥¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¨ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω√√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æÁ¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫Œ√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠∏È", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "π¸≥ª∞Ò", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "π¸¿œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡¬√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫ŒªÍ¡¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√ ∑Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫ŒªÍø™", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ﬂæ”", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥≤∆˜", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿⁄∞•ƒ°", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≈‰º∫", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µø¥ÎΩ≈", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠¥ÎΩ≈", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Î∆º", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±´¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÁ«œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥„∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«œ¥‹", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈∆Ú", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // 2»£º±
+			{ "æÁªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥≤æÁªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫ŒªÍ¥ÎæÁªÍƒ∑∆€Ω∫", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ıªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»£∆˜", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±›∞Ó", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µøø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿≤∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»≠∏Ì", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆ¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥ˆ√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±∏∏Ì", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±∏≥≤", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏∂Û", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏¥ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥ˆ∆˜", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÁªÛ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞®¿¸", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡÷∑ ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥√¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞≥±›", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µø¿«¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞°æﬂ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫Œæœ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠∏È", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿¸∆˜", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫ŒªÍ¿∫«‡", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πÆ«Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ˆ∞‘∞Ò", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏¯∞Ò", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Îø¨", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Êº∫¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥≤√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±›∑√ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±§æ»", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆøµ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πŒ∂Ù", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºæ≈“Ω√∆º", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω√∏≥πÃº˙∞¸", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µøπÈ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«ÿøÓ¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ﬂµø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿ÂªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // 3»£º±
+			{ "¥Î¿˙", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√º¿∞∞¯ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞≠º≠±∏√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±∏∆˜", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥ˆ√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º˜µÓ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥≤ªÍ¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏∏¥ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πÃ≥≤", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÁ¡˜", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡æ«’øÓµø¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞≈¡¶", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¨ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "π∞∏∏∞Ò", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πËªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏¡πÃ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆøµ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // 4»£º±
+			{ "æ»∆Ú", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Ì√Ã", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µø∫ŒªÍ¥Î«–", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øµªÍ¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºÆ¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "π›ø©≥ÛªÍπ∞Ω√¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±›ªÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠µø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "√Ê∑ƒªÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥´πŒ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆæ»", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µø∑°", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πÃ≥≤", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // ∫ŒªÍ - ±Ë«ÿ∞Ê
+			{ "∞°æﬂ¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿ÂΩ≈¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¨¡ˆ∞¯ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "π⁄π∞∞¸", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆ∑Œø’∏™", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫¿»≤", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫Œø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±Ë«ÿΩ√√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Œ¡¶¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±Ë«ÿ¥Î«–", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ˆ≥ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫“æœ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥ÎªÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∆Ú∞≠", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Î¿˙", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µÓ±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥ˆµŒ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞¯«◊", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠∫ŒªÍ¿Ø≈Î¡ˆ±∏", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±•π˝∏£≥◊Ω√∂º", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÁªÛ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		}
+	},
+	{ // ¥Î±∏
+		{ // 1»£º±
+			{ "º≥»≠∏Ì∞Ó", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»≠ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Î∞Ó", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡¯√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø˘πË", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÛ¿Œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø˘√Ã", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º€«ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º∫¥Á∏¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Î∏Ì", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æ»¡ˆ∂˚", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«ˆ√Ê∑Œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øµ¥Î∫¥ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±≥¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏Ì¥ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "π›ø˘¥Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ﬂæ”∑Œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Î±∏ø™", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ƒ•º∫Ω√¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µø¥Î±∏ø™", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≈´∞Ì∞≥", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æ∆æÁ±≥", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µø√Ã", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«ÿæ»", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πÊ√Ã", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øÎ∞Ë", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿≤«œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈±‚", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "π›æﬂø˘", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞¢ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æ»Ω…", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // 2»£º±
+			{ "πÆæÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥ŸªÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥ÎΩ«", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞≠√¢", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Ë∏Ì¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º∫º≠ªÍæ˜¥‹¡ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Ã∞Ó", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øÎªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡◊¿¸", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞®ªÔ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µŒ∑˘", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥ª¥Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "π›∞Ì∞≥", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈≥≤", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "π›ø˘¥Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞Ê¥Î∫¥ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Î±∏¿∫«‡", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "π¸æÓ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆº∫±∏√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏∏√Ã", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥„∆º", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¨»£", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Î∞¯ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞ÌªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈∏≈", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÁø˘", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡§∆Ú", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿”¥Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øµ≥≤¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		},
+		{ // 3»£º±
+			{ "ƒ•∞Ó∞Ê¥Î∫¥ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«–¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∆»∞≈", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µø√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ƒ•∞ÓøÓæœ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±∏æœ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≈¬¿¸", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏≈√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏≈√µΩ√¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∆»¥ﬁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞¯¥‹", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏∏∆Ú", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∆»¥ﬁΩ√¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¯¥Î", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∫œ±∏√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥ﬁº∫∞¯ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠πÆΩ√¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈≥≤", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥≤ªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∏Ì¥ˆø™", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞«µÈπŸ¿ß", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Î∫¿±≥", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆº∫Ω√¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆº∫±∏πŒøÓµø¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æÓ∏∞¿Ã»∏∞¸", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»≤±›", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ºˆº∫∏¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ˆªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "π¸π∞", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øÎ¡ˆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		}
+	},
+	{ // ±§¡÷
+		{ // 1»£º±
+			{ "∆Úµø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µµªÍ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±§¡÷º€¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º€¡§∞¯ø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞¯«◊", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±Ë¥Î¡ﬂƒ¡∫•º«ºæ≈Õ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ªÛπ´", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øÓ√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω÷√Ã", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "»≠¡§", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥Ûº∫", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "µπ∞Ì∞≥", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "æÁµøΩ√¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±›≥≤∑Œ5∞°", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±›≥≤∑Œ4∞°", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "πÆ»≠¿¸¥Á", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥≤±§¡÷", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«–µø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º“≈¬", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥Ïµø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
+		}
+	},
+	{ // ¥Î¿¸
+		{ // 1»£º±
+			{ "π›ºÆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ˆ¡∑", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≥Î¿∫", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø˘µÂƒ≈∞Ê±‚¿Â", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "«ˆ√Êø¯", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "±∏æœ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¿Øº∫ø¬√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞©√µ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø˘∆Ú", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∞•∏∂", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡§∫Œ√ªªÁ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω√√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "≈∫πÊ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "øÎπÆ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "ø¿∑Ê", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "º≠¥Î¿¸≥◊∞≈∏Æ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ﬂ±∏√ª", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¡ﬂæ”∑Œ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Î¿¸ø™", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "¥Îµø", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "Ω≈»Ô", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "∆«æœ", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "", NULL, NULL, NULL, NULL, NULL, NULL, NULL }
 		}
 	}
 };
-		// a[ÎèÑÏãú(0 = ÏÑúÏö∏, 1 = Î∂ÄÏÇ∞, 2 = ÎåÄÍµ¨, 3 = Í¥ëÏ£º, 4 = ÎåÄÏ†Ñ, 5 = Ìï¥Îãπ ÏóÜÏùå)][Ìò∏ÏÑ†][Ïó≠]
-struct train b[6][10][20]
+		// a[µµΩ√(0 = º≠øÔ, 1 = ∫ŒªÍ, 2 = ¥Î±∏, 3 = ±§¡÷, 4 = ¥Î¿¸, 5 = «ÿ¥Á æ¯¿Ω)][»£º±][ø™]
+struct train b[6][10][20] =
 {
 	{
 		{
-			{ "Í∏∞ÏùºÏó≠", { NULL }, NULL, NULL }
+			{ "±‚¿œø™", { NULL }, NULL, NULL }
 		}
 	},
 	{
 		{
-			{ "Í∏∞Í∏∞ÏùºÏó≠", { NULL }, NULL, NULL }
+			{ "±‚±‚¿œø™", { NULL }, NULL, NULL }
 		}
 	}
 };
 
-// b[ÎèÑÏãú(0 = ÏÑúÏö∏, 1 = Î∂ÄÏÇ∞, 2 = ÎåÄÍµ¨, 3 = Í¥ëÏ£º, 4 = ÎåÄÏ†Ñ, 5 = Ìï¥Îãπ ÏóÜÏùå)][Ï≤†ÎèÑ(Í≤ΩÎ∂ÄÏÑ†, Í≤ΩÎ∂ÄÍ≥†ÏÜçÏÑ†, Í¥ëÏ£ºÏÑ† Îì±)][Ïó≠]
+// b[µµΩ√(0 = º≠øÔ, 1 = ∫ŒªÍ, 2 = ¥Î±∏, 3 = ±§¡÷, 4 = ¥Î¿¸, 5 = «ÿ¥Á æ¯¿Ω)][√∂µµ(∞Ê∫Œº±, ∞Ê∫Œ∞Ìº”º±, ±§¡÷º± µÓ)][ø™]
 struct bus c[6][200][50] =
 {
 	{
 		{
-			{ "Î≤ÑÏùºÏó≠", NULL, NULL, NULL },
-			{ "Î≤ÑÏù¥Ïó≠", NULL, NULL, NULL }
+			{ "πˆ¿œø™", NULL, NULL, NULL },
+			{ "πˆ¿Ãø™", NULL, NULL, NULL }
 		}	
 	}
-}; // c[ÎèÑÏãú(0 = ÏÑúÏö∏, 1 = Î∂ÄÏÇ∞, 2 = ÎåÄÍµ¨, 3 = Í¥ëÏ£º, 4 = ÎåÄÏ†Ñ, 5 = Ìï¥Îãπ ÏóÜÏùå)][Î≤ÑÏä§Î≤àÌò∏][Ïó≠]
+}; // c[µµΩ√(0 = º≠øÔ, 1 = ∫ŒªÍ, 2 = ¥Î±∏, 3 = ±§¡÷, 4 = ¥Î¿¸, 5 = «ÿ¥Á æ¯¿Ω)][πˆΩ∫π¯»£][ø™]
 
-char s_via[50][50]; // ÏßÄÌïòÏ≤† Í≤ΩÏú†Ïó≠[
+char s_via[50][50]; // ¡ˆ«œ√∂ ∞Ê¿Øø™[
 char t_via[50][50];
 char b_via[50][50];
 
@@ -85,54 +2169,103 @@ int secondDecomposerStation(char a[50], char b[50]);
 int secondDecomposerTrain(char a[50], char b[50]);
 int secondDecomposerBus(char a[50], char b[50]);
 void findSameCityTransferStation(int e_i, int e_i2, int e_i3, int s_check, int e_check);
+void ImportStationPoint(int e, int e2, int e3)
 
 char FIRSTDECOMPOSER_TRANSFER_START[50];
 char FIRSTDECOMPOSER_TRANSFER_END[50];
 
 
 
-// << 1Ï∞® Î∂ÑÌï¥Ïûê ÏûÖÎ†•Íµ¨Í∞Ñ >>
+// << 1¬˜ ∫–«ÿ¿⁄ ¿‘∑¬±∏∞£ >>
 
-// Ï∂úÎ∞úÏó≠Í≥º ÎèÑÏ∞©Ïó≠ÏùÑ ÏûÖÎ†•ÌïòÎ©¥ ÌôòÏäπ Íµ¨Í∞ÑÎ≥ÑÎ°ú Î∂ÑÌï¥Ìï¥, Ï¥ù Ìï© Í±∏Î¶¨Îäî ÏÜåÏöîÏãúÍ∞ÑÏùÑ Î∞òÌôò Ìï† Í≤É.
+// √‚πﬂø™∞˙ µµ¬¯ø™¿ª ¿‘∑¬«œ∏È »ØΩ¬ ±∏∞£∫∞∑Œ ∫–«ÿ«ÿ, √— «’ ∞…∏Æ¥¬ º“ø‰Ω√∞£¿ª π›»Ø «“ ∞Õ.
 
-int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏßÄ(a) ÏôÄ ÎèÑÏ∞©ÏßÄ(b) Î•º ÏûÖÎ†•Î∞õÏïÑÏÑú ÍµêÌÜµÏàòÎã® Î≥ÑÎ°ú Î∂ÑÌï¥ ÌõÑ ÏÜåÏöîÏãúÍ∞Ñ Î∞òÌôò)
-	int s_check; // Ï∂úÎ∞úÏßÄ
+void TransferPoint() { // ∏µÁ ¡ˆ«œ√∂ πËø≠ø° ∆˜¿Œ∆Æ µÓ∑œ «‘ºˆ∏¶ Ω««‡
+	for (int i = 0; i < 6; i++) { // ¡ˆ«œ√∂ a
+		for (int i2 = 0; i2 < 25; i2++) {
+			for (int i3 = 0; i3 < 80; i3++) {
+				ImportStationPoint(i, i2, i3);
+			}
+		}
+	}
+}
+
+void ImportStationPoint(int e, int e2, int e3) { // ∆˜¿Œ∆Æ µÓ∑œ
+	for (int b = 0; b < 6; b++) {
+		for (int b2 = 0; b2 < 25; b2++) {
+			for (int b3 = 0; b3 < 80; b3++) {
+				if ((e == b) && (e2 == b2) && (e3 == b3)) {
+					break;
+				}
+				else {
+					if(strcmp(a[e][e2][e3].name, a[b][b2][b3].name) == 0) {
+						if (a[e][e2][e3].w == NULL) {
+							printf("%s, %d, %d, %d w µÓ∑œ µ«æ˙Ω¿¥œ¥Ÿ. %s, %d, %d, %d\n", a[e][e2][e3].name, e, e2, e3, a[b][b2][b3].name, b, b2, b3);
+							a[e][e2][e3].w = &a[b][b2][b3];
+						}
+						else if (a[e][e2][e3].a == NULL {
+							printf("%s, %d, %d, %d a µÓ∑œ µ«æ˙Ω¿¥œ¥Ÿ. %s, %d, %d, %d\n", a[e][e2][e3].name, e, e2, e3, a[b][b2][b3].name, b, b2, b3);
+							a[e][e2][e3].a = &a[b][b2][b3];
+						}
+						else if (a[e][e2][e3].s == NULL {
+							printf("%s, %d, %d, %d s µÓ∑œ µ«æ˙Ω¿¥œ¥Ÿ. %s, %d, %d, %d\n", a[e][e2][e3].name, e, e2, e3, a[b][b2][b3].name, b, b2, b3);
+							a[e][e2][e3].s = &a[b][b2][b3];
+						}
+						else if (a[e][e2][e3].d == NULL {	
+							printf("%s, %d, %d, %d d µÓ∑œ µ«æ˙Ω¿¥œ¥Ÿ. %s, %d, %d, %d\n", a[e][e2][e3].name, e, e2, e3, a[b][b2][b3].name, b, b2, b3);
+							a[e][e2][e3].d = &a[b][b2][b3];
+						}
+					}
+				}
+			}
+		}
+	}
+}
+					
+
+
+int firstDecomposer(char start[50], char end[50]) { // √÷√  ∫–«ÿ¿⁄ (√‚πﬂ¡ˆ(a) øÕ µµ¬¯¡ˆ(b) ∏¶ ¿‘∑¬πﬁæ∆º≠ ±≥≈Îºˆ¥‹ ∫∞∑Œ ∫–«ÿ »ƒ º“ø‰Ω√∞£ π›»Ø)
+	int s_check; // √‚πﬂ¡ˆ
 	char s_string[25];
-	int s_i;
-	int s_i2;
-	int s_i3;
+	int s_i = NULL;
+	int s_i2 = NULL;
+	int s_i3 = NULL;
 
-	int e_check; // ÎèÑÏ∞©ÏßÄ
+	int e_check; // µµ¬¯¡ˆ
 	char e_string[25];
-	int e_i;
-	int e_i2;
-	int e_i3;
+	int e_i = NULL;
+	int e_i2 = NULL;
+	int e_i3 = NULL;
 
-	printf("First Decomposer ÏûëÎèôÏùÑ ÏßÑÌñâÌï©ÎãàÎã§. \n");
+	printf("First Decomposer ¿€µø¿ª ¡¯«‡«’¥œ¥Ÿ. \n");
 
-	printf("Ïó≠ Ï†ïÎ≥¥Î•º ÏùΩÏñ¥Ïò§Í≥† ÏûàÏäµÎãàÎã§. \n");
+	printf("ø™ ¡§∫∏∏¶ ¿–æÓø¿∞Ì ¿÷Ω¿¥œ¥Ÿ. \n");
 
-	for (int i = 0; i < 6; i++) { // ÏßÄÌïòÏ≤†
+	for (int i = 0; i < 6; i++) { // ¡ˆ«œ√∂
 		for (int i2 = 0; i2 < 25; i2++) {
 			for (int i3 = 0; i3 < 80; i3++) {
 				if (strcmp(start, a[i][i2][i3].name) == 0) {
+					printf("1. %d, 2. %d, 3. %d\n", i, i2, i3);
 					s_i = i;
 					s_i2 = i2;
 					s_i3 = i3;
 					s_check = 1;
+					printf("s1. %d, s2. %d, s3. %d\n", s_i, s_i2, s_i3);
 				}
 
 				else if (strcmp(end, a[i][i2][i3].name) == 0) {
+					printf("1. %d, 2. %d, 3. %d\n", i, i2, i3);
 					e_i = i;
 					e_i2 = i2;
 					e_i3 = i3;
 					e_check = 1;
+					printf("e1. %d, e2. %d, e3. %d\n", e_i, e_i2, e_i3);
 				}
 			}
 		}
 	}
 
-	for (int i = 0; i < 6; i++) { // Ï≤†ÎèÑ
+	for (int i = 0; i < 6; i++) { // √∂µµ
 		for (int i2 = 0; i2 < 10; i2++) {
 			for (int i3 = 0; i3 < 20; i3++) {
 				if (strcmp(start, b[i][i2][i3].name) == 0) {
@@ -152,7 +2285,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 		}
 	}
 
-	for (int i = 0; i < 4; i++) { // Î≤ÑÏä§
+	for (int i = 0; i < 4; i++) { // πˆΩ∫
 		for (int i2 = 0; i2 < 200; i2++) {
 			for (int i3 = 0; i3 < 50; i3++) {
 				if (strcmp(start, c[i][i2][i3].name)) {
@@ -170,40 +2303,40 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 				}
 			}
 		}
-	} // Î™®Îì† Ïó≠Ïùò Ïù¥Î¶ÑÏùÑ ÎåÄÏ°∞ Ìïú Îí§, Ïù¥Î¶ÑÏù¥ Í∞ôÏùÄ Ïó≠Ïùò Î∞∞Ïó¥ Î≤àÌò∏ÏôÄ ÍµêÌÜµÏàòÎã®ÏùÑ Ï†ÄÏû•. (1 = ÏßÄÌïòÏ≤†, 2 = Ï≤†ÎèÑ, 3 = Î≤ÑÏä§)
+	} // ∏µÁ ø™¿« ¿Ã∏ß¿ª ¥Î¡∂ «— µ⁄, ¿Ã∏ß¿Ã ∞∞¿∫ ø™¿« πËø≠ π¯»£øÕ ±≥≈Îºˆ¥‹¿ª ¿˙¿Â. (1 = ¡ˆ«œ√∂, 2 = √∂µµ, 3 = πˆΩ∫)
 
-	printf("Ïó≠ Ï†ïÎ≥¥ ÏùΩÏñ¥Ïò§Í∏∞ ÏôÑÎ£å.\n\n");
-	printf("Ï∂úÎ∞úÏßÄ : %s\n", start);
+	printf("ø™ ¡§∫∏ ¿–æÓø¿±‚ øœ∑·.\n\n");
+	printf("√‚πﬂ¡ˆ : %s\n", start);
 	printf("s_i = %d\n", s_i);
 	printf("s_i2 = %d\n", s_i2);
 	printf("s_i3 = %d\n", s_i3);
 	printf("s_check = %d\n\n", s_check);
 
-	printf("ÎèÑÏ∞©ÏßÄ : %s\n", end);
+	printf("µµ¬¯¡ˆ : %s\n", end);
 	printf("e_i = %d\n", e_i);
 	printf("e_i2 = %d\n", e_i2);
 	printf("e_i3 = %d\n", e_i3);
 	printf("e_check = %d\n", e_check);
 
 	switch (s_i) {
-	case 0: strcpy(s_string, "ÏÑúÏö∏Ïó≠"); break;
-	case 1: strcpy(s_string, "Î∂ÄÏÇ∞Ïó≠"); break;
-	case 2: strcpy(s_string, "ÎåÄÍµ¨Ïó≠"); break;
-	case 3: strcpy(s_string, "Í¥ëÏ£ºÏó≠"); break;
-	case 4: strcpy(s_string, "ÎåÄÏ†ÑÏó≠"); break;
+	case 0: strcpy(s_string, "º≠øÔø™"); break;
+	case 1: strcpy(s_string, "∫ŒªÍø™"); break;
+	case 2: strcpy(s_string, "¥Î±∏ø™"); break;
+	case 3: strcpy(s_string, "±§¡÷ø™"); break;
+	case 4: strcpy(s_string, "¥Î¿¸ø™"); break;
 	}
 
 	switch (e_i) {
-	case 0: strcpy(e_string, "ÏÑúÏö∏Ïó≠"); break;
-	case 1: strcpy(e_string, "Î∂ÄÏÇ∞Ïó≠"); break;
-	case 2: strcpy(e_string, "ÎåÄÍµ¨Ïó≠"); break;
-	case 3: strcpy(e_string, "Í¥ëÏ£ºÏó≠"); break;
-	case 4: strcpy(e_string, "ÎåÄÏ†ÑÏó≠"); break;
+	case 0: strcpy(e_string, "º≠øÔø™"); break;
+	case 1: strcpy(e_string, "∫ŒªÍø™"); break;
+	case 2: strcpy(e_string, "¥Î±∏ø™"); break;
+	case 3: strcpy(e_string, "±§¡÷ø™"); break;
+	case 4: strcpy(e_string, "¥Î¿¸ø™"); break;
 	}
 
-	printf("1Ï∞® Î∂ÑÌï¥Î•º Í∞úÏãúÌï©ÎãàÎã§.\n");
+	printf("1¬˜ ∫–«ÿ∏¶ ∞≥Ω√«’¥œ¥Ÿ.\n");
 
-	if (s_check == e_check) { // Í≤ΩÏö∞Ïóê Îî∞Îùº ÎÇòÎààÎã§ (ÍµêÌÜµ ÏàòÎã®Ïù¥ Í∞ôÏùÑ Í≤ΩÏö∞)
+	if (s_check == e_check) { // ∞ÊøÏø° µ˚∂Û ≥™¥´¥Ÿ (±≥≈Î ºˆ¥‹¿Ã ∞∞¿ª ∞ÊøÏ)
 
 		printf("s_check == e_check\n");
 
@@ -214,7 +2347,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 				switch (e_i) {
 				case 0: printf("Error Number : 0000\n"); break;
 				default:
-					printf("case : 1-0-D ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 1-0-D ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					secondDecomposerStation(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -229,7 +2362,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 				switch (e_i) {
 				case 1: printf("Error Number : 0000\n"); break;
 				default:
-					printf("case : 1-1-D ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 1-1-D ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					secondDecomposerStation(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -244,7 +2377,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 				switch (e_i) {
 				case 2: printf("Error Number : 0000\n"); break;
 				default:
-					printf("case : 1-2-D ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 1-2-D ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 					secondDecomposerStation(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
 					secondDecomposerStation(e_string, end);
@@ -258,7 +2391,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 				switch (e_i) {
 				case 3: printf("Error Number : 0000\n"); break;
 				default:
-					printf("case : 1-3-D ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 1-3-D ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					secondDecomposerStation(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -273,7 +2406,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 				switch (e_i) {
 				case 4: printf("Error Number : 0000\n"); break;
 				default:
-					printf("case : 1-4-D ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 1-4-D ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					secondDecomposerStation(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -287,7 +2420,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 			}
 		}
 				else {
-					printf("case : 1-E-: ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 1-E-: ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					secondDecomposerStation(start, end);
 
@@ -299,37 +2432,37 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 			case 0:
 				switch (e_i) {
 				case 0: printf("Error Number : 0000\n"); break;
-				default: printf("case : 2-0-D ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n"); secondDecomposerTrain(s_string, e_string);
+				default: printf("case : 2-0-D ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n"); secondDecomposerTrain(s_string, e_string);
 					printf("2. %s, %s\n", s_string, e_string); break;
 				}; break;
 			case 1:
 				switch (e_i) {
 				case 1: printf("Error Number : 0000\n"); break;
-				default: printf("case : 2-1-D ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n"); secondDecomposerTrain(s_string, e_string);
+				default: printf("case : 2-1-D ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n"); secondDecomposerTrain(s_string, e_string);
 					printf("2. %s, %s\n", s_string, e_string); break;
 				}; break;
 			case 2:
 				switch (e_i) {
 				case 2: printf("Error Number : 0000\n"); break;
-				default: printf("case : 2-2-D ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n"); secondDecomposerTrain(s_string, e_string);
+				default: printf("case : 2-2-D ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n"); secondDecomposerTrain(s_string, e_string);
 					printf("2. %s, %s\n", s_string, e_string); break;
 				}; break;
 			case 3:
 				switch (e_i) {
 				case 3: printf("Error Number : 0000\n"); break;
-				default: printf("case : 2-3-D ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n"); secondDecomposerTrain(s_string, e_string);
+				default: printf("case : 2-3-D ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n"); secondDecomposerTrain(s_string, e_string);
 					printf("2. %s, %s\n", s_string, e_string); break;
 				}; break;
 			case 4:
 				switch (e_i) {
 				case 4: printf("Error Number : 0000\n"); break;
-				default: printf("case : 2-4-D ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n"); secondDecomposerTrain(s_string, e_string);
+				default: printf("case : 2-4-D ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n"); secondDecomposerTrain(s_string, e_string);
 					printf("2. %s, %s\n", s_string, e_string); break;
 				}; break;
 			}
 		}
 				else {
-					printf("case : 2-E-: ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 2-E-: ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					secondDecomposerTrain(start, end);
 
@@ -342,7 +2475,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 				switch (e_i) {
 				case 0: printf("Error Number : 0000\n"); break;
 				default:
-					printf("case : 3-0-D ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 3-0-D ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -357,7 +2490,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 				switch (e_i) {
 				case 1: printf("Error Number : 0000\n"); break;
 				default:
-					printf("case : 3-1-D ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 3-1-D ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -372,7 +2505,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 				switch (e_i) {
 				case 2: printf("Error Number : 0000\n"); break;
 				default:
-					printf("case : 3-2-D ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 3-2-D ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -387,7 +2520,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 				switch (e_i) {
 				case 3: printf("Error Number : 0000\n"); break;
 				default:
-					printf("case : 3-3-D ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 3-3-D ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -402,7 +2535,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 				switch (e_i) {
 				case 4: printf("Error Number : 0000\n"); break;
 				default:
-					printf("case : 3-4-D ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 3-4-D ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -416,7 +2549,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 			}
 		}
 				else {
-					printf("case : 3-E-: ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 3-E-: ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					secondDecomposerBus(start, end);
 
@@ -435,7 +2568,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 			case 1: printf("Error Number : 0001\n"); break;
 			case 2: 
 				if (s_i != e_i) {
-					printf("case : 1-2-I ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 1-2-I ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					secondDecomposerStation(start, s_string);
 					secondDecomposerTrain(s_string, end);
@@ -444,7 +2577,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 					printf("2. %s, %s\n", s_string, end);
 				}
 				else {
-					printf("case : 1-2-E ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 1-2-E ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					findSameCityTransferStation(e_i, e_i2, e_i3, s_check, e_check);
 					secondDecomposerStation(start, FIRSTDECOMPOSER_TRANSFER_START);
@@ -454,7 +2587,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 				break;
 			case 3: 
 				if (s_i != e_i) {
-					printf("case : 1-3-I ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 1-3-I ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					secondDecomposerStation(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -465,7 +2598,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 					printf("3. %s, %s\n", e_string, end);
 				}
 				else {
-					printf("case : 1-3-D ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 1-3-D ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					findSameCityTransferStation(e_i, e_i2, e_i3, s_check, e_check);
 					secondDecomposerStation(start, FIRSTDECOMPOSER_TRANSFER_START);
@@ -480,7 +2613,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 			switch (e_check) {
 			case 1: 
 				if (s_i != e_i) {
-					printf("case : 2-1-I ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 2-1-I ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					secondDecomposerTrain(s_string, e_string);
 					secondDecomposerStation(e_string, end);
@@ -489,7 +2622,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 					printf("3. %s, %s\n", e_string, end);
 				}
 				else {
-					printf("case : 2-1-E ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 2-1-E ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					secondDecomposerStation(start, end);
 
@@ -499,7 +2632,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 			case 2: printf("Error Number : 0001\n"); break;
 			case 3: 
 				if (s_i != e_i) {
-					printf("case : 2-3-I ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 2-3-I ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					secondDecomposerTrain(s_string, e_string);
 					secondDecomposerBus(e_string, end);
@@ -508,7 +2641,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 					printf("3. %s, %s\n", e_string, end);
 				}
 				else {
-					printf("case : 2-3-E ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 2-3-E ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					secondDecomposerBus(start, end);
 
@@ -520,7 +2653,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 			switch (e_check) {
 			case 1: 
 				if (s_i != e_i) {
-					printf("case : 3-1-I ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 3-1-I ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -531,7 +2664,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 					printf("3. %s, %s\n", e_string, end);
 				}
 				else {
-					printf("case : 3-1-E ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 3-1-E ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					findSameCityTransferStation(e_i, e_i2, e_i3, s_check, e_check);
 					secondDecomposerBus(start, FIRSTDECOMPOSER_TRANSFER_START);
@@ -543,7 +2676,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 				break;
 			case 2: 
 				if (s_i != e_i) {
-					printf("case : 3-2-I ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 3-2-I ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
@@ -552,7 +2685,7 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 					printf("2. %s, %s\n", s_string, e_string);
 				}
 				else {
-					printf("case : 3-2-E ÏûëÏóÖÏù¥ ÌôïÏù∏ÎêòÏóàÏäµÎãàÎã§.\n");
+					printf("case : 3-2-E ¿€æ˜¿Ã »Æ¿Œµ«æ˙Ω¿¥œ¥Ÿ.\n");
 
 					findSameCityTransferStation(e_i, e_i2, e_i3, s_check, e_check);
 					secondDecomposerBus(start, FIRSTDECOMPOSER_TRANSFER_START);
@@ -567,15 +2700,15 @@ int firstDecomposer(char start[50], char end[50]) { // ÏµúÏ¥à Î∂ÑÌï¥Ïûê (Ï∂úÎ∞úÏ
 		}
 	}
 
-	printf("1Ï∞® Î∂ÑÌï¥ Ï¢ÖÎ£å.\n");
-	printf("First Decomposer Ï¢ÖÎ£å.\n");
+	printf("1¬˜ ∫–«ÿ ¡æ∑·.\n");
+	printf("First Decomposer ¡æ∑·.\n");
 
 	return 0;
 }
 
 void findSameCityTransferStation(int e_i, int e_i2, int e_i3, int s_check, int e_check) {
 	switch (s_check) {
-	case 1: // ÏßÄÌïòÏ≤†
+	case 1: // ¡ˆ«œ√∂
 		switch (e_check) {
 		case 1: printf("Error Number : 0002\n"); break;
 		case 2:
@@ -613,7 +2746,7 @@ void findSameCityTransferStation(int e_i, int e_i2, int e_i3, int s_check, int e
 				}
 			}; break;
 		}; break;
-	case 2: // Ï≤†ÎèÑ
+	case 2: // √∂µµ
 		switch (e_check) {
 		case 1:
 			for (int i2 = e_i2; i2 < 25; i2++) {
@@ -651,7 +2784,7 @@ void findSameCityTransferStation(int e_i, int e_i2, int e_i3, int s_check, int e
 				}
 			}; break;
 		}; break;
-	case 3: // Î≤ÑÏä§
+	case 3: // πˆΩ∫
 		switch (e_check) {
 		case 1:
 			for (int i2 = e_i2; i2 < 25; i2++) {
@@ -695,36 +2828,36 @@ void findSameCityTransferStation(int e_i, int e_i2, int e_i3, int s_check, int e
  
 
 
-// << 2Ï∞® Î∂ÑÌï¥Ïûê ÏûÖÎ†•Íµ¨Í∞Ñ >>
+// << 2¬˜ ∫–«ÿ¿⁄ ¿‘∑¬±∏∞£ >>
 
-// 2Ï∞® Î∂ÑÌï¥Ïûê(secondDecomposer~~) Îäî Ï∂úÎ∞úÏßÄÏôÄ ÎèÑÏ∞©ÏßÄÎ•º ÏûÖÎ†• Î∞õÏïÑÏÑú ~~ Ïóê ÏÑúÏà†Îêú ÍµêÌÜµÏàòÎã®Ïùò ÌôòÏäπ Ïó≠ Î≥ÑÎ°ú Î∂ÑÌï¥ ÌõÑ, ÏÜåÏöîÏãúÍ∞Ñ Î∞òÌôò.
+// 2¬˜ ∫–«ÿ¿⁄(secondDecomposer~~) ¥¬ √‚πﬂ¡ˆøÕ µµ¬¯¡ˆ∏¶ ¿‘∑¬ πﬁæ∆º≠ ~~ ø° º≠º˙µ» ±≥≈Îºˆ¥‹¿« »ØΩ¬ ø™ ∫∞∑Œ ∫–«ÿ »ƒ, º“ø‰Ω√∞£ π›»Ø.
 
-// Ï§ëÎ≥µ ÏÇ¨Ïö©ÏùÑ Î∞©ÏßÄÌïòÍ∏∞ ÏúÑÌïòÏó¨ Ï†ÑÏó≠ Î≥ÄÏàò ÏÇ¨Ïö©Ïãú, Î≥ÄÏàòÏùò ÏïûÏóê ÏûêÏã†Ïùò Ïù¥Î¶Ñ Ïù¥ÎãàÏÖúÏùÑ Î∂ôÏùº Í≤É.
-// Ï∂úÎ∞úÏßÄÏóêÏÑú ÎèÑÏ∞©ÏßÄÎ°ú Ìñ•ÌïòÎäî Í≥ºÏ†ïÏóê Í≤ΩÏú†ÌïòÍ≤å ÎêòÎäî Ïó≠Ïùò Ïù¥Î¶ÑÏùÑ s_via (ÏßÄÌïòÏ≤†), t_via (Í∏∞Ï∞®), b_via (Î≤ÑÏä§) Ïóê ÏàúÏÑúÎåÄÎ°ú ÏÇΩÏûÖ Ìï† Í≤É.
+// ¡ﬂ∫π ªÁøÎ¿ª πÊ¡ˆ«œ±‚ ¿ß«œø© ¿¸ø™ ∫Øºˆ ªÁøÎΩ√, ∫Øºˆ¿« æ’ø° ¿⁄Ω≈¿« ¿Ã∏ß ¿Ã¥œº»¿ª ∫Ÿ¿œ ∞Õ.
+// √‚πﬂ¡ˆø°º≠ µµ¬¯¡ˆ∑Œ «‚«œ¥¬ ∞˙¡§ø° ∞Ê¿Ø«œ∞‘ µ«¥¬ ø™¿« ¿Ã∏ß¿ª s_via (¡ˆ«œ√∂), t_via (±‚¬˜), b_via (πˆΩ∫) ø° º¯º≠¥Î∑Œ ª¿‘ «“ ∞Õ.
 
-int secondDecomposerStation(char a[50], char b[50]) { // ÏïàÏùÄÍ∑ú (ÏßÄÌïòÏ≤†)
+int secondDecomposerStation(char a[50], char b[50]) { // æ»¿∫±‘ (¡ˆ«œ√∂)
 
 	
 	return 0;
 }
 
-int secondDecomposerTrain(char a[50], char b[50]) { // ÍπÄÏÑ∏Ìõà (Ï≤†ÎèÑ)
+int secondDecomposerTrain(char a[50], char b[50]) { // ±Ëºº»∆ (√∂µµ)
 
 	return 0;
 }
 
-int secondDecomposerBus(char a[50], char b[50]) { // Î∞ïÎèôÍ∑ú (Î≤ÑÏä§)
+int secondDecomposerBus(char a[50], char b[50]) { // π⁄µø±‘ (πˆΩ∫)
 
 	return 0;
 }
 
 
-// << Î©îÏù∏ Ìï®Ïàò ÏûÖÎ†•Íµ¨Í∞Ñ >>
+// << ∏ﬁ¿Œ «‘ºˆ ¿‘∑¬±∏∞£ >>
 
 int main()
 { 
-	firstDecomposer("ÏßÄÏùºÏó≠", "Í∏∞Í∏∞ÏùºÏó≠");
+	TransferPoint();
+	firstDecomposer("¿Œ√µ", "µø¿Œ√µ");
 
     return 0;
 }
-
