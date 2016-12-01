@@ -2805,6 +2805,7 @@ int secondDecomposerStation(char start[50], char end[50]) { // 안은규 (지하철)
 					e_i2 = i2;
 					e_i3 = i3;
 				}
+			
 			}
 		}
 	}
@@ -2814,7 +2815,10 @@ int secondDecomposerStation(char start[50], char end[50]) { // 안은규 (지하철)
 	}
 
 	else {
-	
+		if(a[][][].w != NULL)
+		{
+
+		}
 	
 	}
 
