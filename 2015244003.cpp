@@ -2169,6 +2169,7 @@ int secondDecomposerStation(char a[50], char b[50]);
 int secondDecomposerTrain(char a[50], char b[50]);
 int secondDecomposerBus(char a[50], char b[50]);
 void findSameCityTransferStation(int e_i, int e_i2, int e_i3, int s_check, int e_check);
+void ImportStationPoint(int e, int e2, int e3);
 
 char FIRSTDECOMPOSER_TRANSFER_START[50];
 char FIRSTDECOMPOSER_TRANSFER_END[50];
@@ -2178,6 +2179,50 @@ char FIRSTDECOMPOSER_TRANSFER_END[50];
 // << 1차 분해자 입력구간 >>
 
 // 출발역과 도착역을 입력하면 환승 구간별로 분해해, 총 합 걸리는 소요시간을 반환 할 것.
+
+void TransferPoint() { // 모든 지하철 배열에 포인트 등록 함수를 실행
+	for (int i = 0; i < 6; i++) { // 지하철 a
+		for (int i2 = 0; i2 < 25; i2++) {
+			for (int i3 = 0; i3 < 80; i3++) {
+				ImportStationPoint(i, i2, i3);
+			}
+		}
+	}
+}
+
+void ImportStationPoint(int e, int e2, int e3) { // 포인트 등록
+	for (int b = 0; b < 6; b++) {
+		for (int b2 = 0; b2 < 25; b2++) {
+			for (int b3 = 0; b3 < 80; b3++) {
+				if ((e == b) && (e2 == b2) && (e3 == b3)) {
+					break;
+				}
+				else {
+					if((strcmp(a[e][e2][e3].name, "") != 0) && (strcmp(a[e][e2][e3].name, a[b][b2][b3].name) == 0)) {
+						if (a[e][e2][e3].w == NULL) {
+							printf("%s, %d, %d, %d w 등록 되었습니다. %s, %d, %d, %d\n", a[e][e2][e3].name, e, e2, e3, a[b][b2][b3].name, b, b2, b3);
+							a[e][e2][e3].w = &a[b][b2][b3];
+						}
+						else if (a[e][e2][e3].a == NULL) {
+							printf("%s, %d, %d, %d a 등록 되었습니다. %s, %d, %d, %d\n", a[e][e2][e3].name, e, e2, e3, a[b][b2][b3].name, b, b2, b3);
+							a[e][e2][e3].a = &a[b][b2][b3];
+						}
+						else if (a[e][e2][e3].s == NULL) {
+							printf("%s, %d, %d, %d s 등록 되었습니다. %s, %d, %d, %d\n", a[e][e2][e3].name, e, e2, e3, a[b][b2][b3].name, b, b2, b3);
+							a[e][e2][e3].s = &a[b][b2][b3];
+						}
+						else if (a[e][e2][e3].d == NULL) {	
+							printf("%s, %d, %d, %d d 등록 되었습니다. %s, %d, %d, %d\n", a[e][e2][e3].name, e, e2, e3, a[b][b2][b3].name, b, b2, b3);
+							a[e][e2][e3].d = &a[b][b2][b3];
+						}
+					}
+				}
+			}
+		}
+	}
+}
+					
+
 
 int firstDecomposer(char start[50], char end[50]) { // 최초 분해자 (출발지(a) 와 도착지(b) 를 입력받아서 교통수단 별로 분해 후 소요시간 반환)
 	int s_check; // 출발지
@@ -2811,6 +2856,7 @@ int secondDecomposerBus(char a[50], char b[50]) { // 박동규 (버스)
 
 int main()
 { 
+	TransferPoint();
 	firstDecomposer("인천", "동인천");
 
     return 0;
