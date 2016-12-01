@@ -23,6 +23,7 @@ typedef struct station { // 지하철 역 정보
 	struct station *d; // 지하철 환승 4
 	struct train *tr; // 기차로 환승
 	struct bus *bu; // 버스로 환승
+	int array[3];
 }station;
 
 typedef struct train { // 기차 역 정보
@@ -31,6 +32,7 @@ typedef struct train { // 기차 역 정보
 
 	struct station *st; // 지하철로 환승
 	struct bus *bu; // 버스로 환승
+	int array[3];
 }train;
 
 typedef struct bus { // 버스 역 정보
@@ -2168,6 +2170,8 @@ char b_via[50][50];
 int secondDecomposerStation(char a[50], char b[50]);
 int secondDecomposerTrain(char a[50], char b[50]);
 int secondDecomposerBus(char a[50], char b[50]);
+int SecondTransferStation(char start[50], char end[50], int s_i, int s_i2, int e_i, int e_i2);
+int ThirdTransferStation(char start[50], char end[50], int s_i, int s_i2, int e_i, int e_i2);
 void findSameCityTransferStation(int e_i, int e_i2, int e_i3, int s_check, int e_check);
 void ImportStationPoint(int e, int e2, int e3);
 
@@ -2221,21 +2225,57 @@ void ImportStationPoint(int e, int e2, int e3) { // 포인트 등록
 		}
 	}
 }
+
+void ImportStationAndTrainNumber() {
+	for (int b = 0; b < 6; b++) {
+		for (int b2 = 0; b2 < 25; b2++) {
+			for (int b3 = 0; b3 < 80; b3++) {
+				a[b][b2][b3].array[0] = b;
+				a[b][b2][b3].array[1] = b2;
+				a[b][b2][b3].array[2] = b3;
+
+				if (strcmp(a[b][b2][b3].name, "") == 0) {
+					a[b][b2][b3].array[0] = NULL;
+					a[b][b2][b3].array[1] = NULL;
+					a[b][b2][b3].array[2] = NULL;
+				}
+			}
+		}
+	}
+
+	for (int i = 0; i < 6; i++) {
+		for (int i2 = 0; i2 < 10; i2++) {
+			for (int i3 = 0; i3 < 20; i3++) {
+				b[i][i2][i3].array[0] = i;
+				b[i][i2][i3].array[1] = i2;
+				b[i][i2][i3].array[2] = i3;
+
+				if (strcmp(b[i][i2][i3].name, "") == 0) {
+					b[i][i2][i3].array[0] = NULL;
+					b[i][i2][i3].array[1] = NULL;
+					b[i][i2][i3].array[2] = NULL;
+				}
+			}
+		}
+	}
+}
 					
 
 
-int firstDecomposer(char start[50], char end[50]) { // 최초 분해자 (출발지(a) 와 도착지(b) 를 입력받아서 교통수단 별로 분해 후 소요시간 반환)
+int FirstDecomposer(char start[50], char end[50]) { // 최초 분해자 (출발지(a) 와 도착지(b) 를 입력받아서 교통수단 별로 분해 후 소요시간 반환)
 	int s_check; // 출발지
 	char s_string[25];
 	int s_i = NULL;
 	int s_i2 = NULL;
 	int s_i3 = NULL;
+	int s_o = 0;
 
 	int e_check; // 도착지
 	char e_string[25];
 	int e_i = NULL;
 	int e_i2 = NULL;
 	int e_i3 = NULL;
+	int e_o = 0;
 
 	printf("First Decomposer 작동을 진행합니다. \n");
 
@@ -2244,22 +2284,24 @@ int firstDecomposer(char start[50], char end[50]) { // 최초 분해자 (출발지(a) 와
 	for (int i = 0; i < 6; i++) { // 지하철
 		for (int i2 = 0; i2 < 25; i2++) {
 			for (int i3 = 0; i3 < 80; i3++) {
-				if (strcmp(start, a[i][i2][i3].name) == 0) {
+				if ((s_o != 1) && (strcmp(start, a[i][i2][i3].name) == 0)) {
 					printf("1. %d, 2. %d, 3. %d\n", i, i2, i3);
 					s_i = i;
 					s_i2 = i2;
 					s_i3 = i3;
 					s_check = 1;
-					printf("s1. %d, s2. %d, s3. %d\n", s_i, s_i2, s_i3);
+					s_o = 1;
+					printf("등록되었습니다. %s, %d, %d, %d\n", a[s_i][s_i2][s_i3].name, s_i, s_i2, s_i3);
 				}
 
-				else if (strcmp(end, a[i][i2][i3].name) == 0) {
+				else if ((e_o != 1) && (strcmp(end, a[i][i2][i3].name) == 0)) {
 					printf("1. %d, 2. %d, 3. %d\n", i, i2, i3);
 					e_i = i;
 					e_i2 = i2;
 					e_i3 = i3;
 					e_check = 1;
-					printf("e1. %d, e2. %d, e3. %d\n", e_i, e_i2, e_i3);
+					e_o = 1;
+					printf("등록되었습니다. %s, %d, %d, %d\n", a[e_i][e_i2][e_i3].name, e_i, e_i2, e_i3);
 				}
 			}
 		}
@@ -2268,18 +2310,22 @@ int firstDecomposer(char start[50], char end[50]) { // 최초 분해자 (출발지(a) 와
 	for (int i = 0; i < 6; i++) { // 철도
 		for (int i2 = 0; i2 < 10; i2++) {
 			for (int i3 = 0; i3 < 20; i3++) {
-				if (strcmp(start, b[i][i2][i3].name) == 0) {
+				if ((s_o != 1) && (strcmp(start, b[i][i2][i3].name) == 0)) {
 					s_i = i;
 					s_i2 = i2;
 					s_i3 = i3;
 					s_check = 2;
+					s_o = 1;
+					printf("등록되었습니다. %s, %d, %d, %d\n", a[s_i][s_i2][s_i3].name, s_i, s_i2, s_i3);
 				}
 
-				else if (strcmp(end, b[i][i2][i3].name) == 0) {
+				else if ((e_o != 1) && (strcmp(end, b[i][i2][i3].name)) == 0) {
 					e_i = i;
 					e_i2 = i2;
 					e_i3 = i3;
 					e_check = 2;
+					e_o = 1;
+					printf("등록되었습니다. %s, %d, %d, %d\n", a[s_i][s_i2][s_i3].name, s_i, s_i2, s_i3);
 				}
 			}
 		}
@@ -2288,18 +2334,22 @@ int firstDecomposer(char start[50], char end[50]) { // 최초 분해자 (출발지(a) 와
 	for (int i = 0; i < 4; i++) { // 버스
 		for (int i2 = 0; i2 < 200; i2++) {
 			for (int i3 = 0; i3 < 50; i3++) {
-				if (strcmp(start, c[i][i2][i3].name)) {
+				if ((s_o != 1) && (strcmp(start, c[i][i2][i3].name) == 0)) {
 					s_i = i;
 					s_i2 = i2;
 					s_i3 = i3;
 					s_check = 3;
+					s_o = 1;
+					printf("등록되었습니다. %s, %d, %d, %d\n", a[s_i][s_i2][s_i3].name, s_i, s_i2, s_i3);
 				}
 
-				else if (strcmp(end, c[i][i2][i3].name)) {
+				else if ((e_o != 1) && (strcmp(end, c[i][i2][i3].name) == 0)) {
 					e_i = i;
 					e_i2 = i2;
 					e_i3 = i3;
 					e_check = 3;
+					e_o = 1;
+					printf("등록되었습니다. %s, %d, %d, %d\n", a[s_i][s_i2][s_i3].name, s_i, s_i2, s_i3);
 				}
 			}
 		}
@@ -2823,7 +2873,6 @@ void findSameCityTransferStation(int e_i, int e_i2, int e_i3, int s_check, int e
 		case 3: printf("Error Number : 0002\n"); break;
 		}; break;
 	}
-
 }
  
 
@@ -2835,8 +2884,223 @@ void findSameCityTransferStation(int e_i, int e_i2, int e_i3, int s_check, int e
 // 중복 사용을 방지하기 위하여 전역 변수 사용시, 변수의 앞에 자신의 이름 이니셜을 붙일 것.
 // 출발지에서 도착지로 향하는 과정에 경유하게 되는 역의 이름을 s_via (지하철), t_via (기차), b_via (버스) 에 순서대로 삽입 할 것.
 
-int secondDecomposerStation(char a[50], char b[50]) { // 안은규 (지하철)
+void DisplayStationGUI(char start[50], char end[50], int s_i2, int e_i2) {
+	printf("%10s (%3d 호선) -> %10s (%3d 호선)\n", start, s_i2, end, e_i2);
+}
 
+void DisplayStationGUI(char start[50], char end[50], int s_i2, int e_i2, char via[50], int v_i2) {
+	printf("%s(%d 호선) -> %s(%d 호선) | %s(%d 호선) -> %s(%d 호선)\n", start, s_i2, via, v_i2, via, v_i2, end, e_i2);
+}
+
+void DisplayStationGUI(char start[50], char end[50], int s_i2, int e_i2, char via[50], int v_i2, char via2[50], int v2_i2) {
+	printf("%s(%d 호선) -> %s(%d 호선) | %s(%d 호선) -> %s(%d 호선) | %s(%d 호선) -> %s(%d 호선)\n", start, s_i2, via, v_i2, via, v_i2, via2, v2_i2, via2, v_i2, end, e_i2);
+}
+
+void DisplayStationGUI(char start[50], char end[50], int s_i2, int e_i2, char via[50], int v_i2, char via2[50], int v2_i2, char via3[50], int v3_i2) {
+	printf("%s(%d 호선) -> %s(%d 호선) | %s(%d 호선) -> %s(%d 호선) | %s(%d 호선) -> %s(%d 호선) | %s(%d 호선) -> %s(%d 호선)\n", start, s_i2, via, v_i2, via, v_i2, via2, v2_i2, via2, v2_i2, via3, v3_i2, via3, v3_i2, end, e_i2);
+}
+
+void TransferStation(char start[50], char end[50], int s_i, int s_i2, int e_i, int e_i2) {
+	int count = 1;
+
+	while (count < 4) {
+		switch (count) {
+		case 1: 
+			printf("1개 환승\n");
+			for (int i = 0; i < 80; i++) {
+				if (a[s_i][s_i2][i].w != NULL) {
+					if (a[s_i][s_i2][i].a != NULL) {
+						if (a[s_i][s_i2][i].s != NULL) {
+							if (a[s_i][s_i2][i].d != NULL) {
+								if (a[s_i][s_i2][i].d->array[1] == e_i2) {
+									DisplayStationGUI(start, end, s_i2, e_i2, a[s_i][s_i2][i].d->name, a[s_i][s_i2][i].d->array[1]);
+								}
+							}
+							else if (a[s_i][s_i2][i].s->array[1] == e_i2) {
+								DisplayStationGUI(start, end, s_i2, e_i2, a[s_i][s_i2][i].s->name, a[s_i][s_i2][i].s->array[1]);
+							}
+						}
+						else if (a[s_i][s_i2][i].a->array[1] == e_i2) {
+							DisplayStationGUI(start, end, s_i2, e_i2, a[s_i][s_i2][i].a->name, a[s_i][s_i2][i].a->array[1]);
+						}
+					}	
+					else if (a[s_i][s_i2][i].w->array[1] == e_i2) {
+						DisplayStationGUI(start, end, s_i2, e_i2, a[s_i][s_i2][i].w->name, a[s_i][s_i2][i].w->array[1]);
+					}
+				}
+			}
+			count = 2;
+			break;
+		case 2: 
+			printf("2개 환승\n");
+			for (int i = 0; i < 80; i++) {
+				if (a[s_i][s_i2][i].w != NULL) {
+					if (a[s_i][s_i2][i].a != NULL) {
+						if (a[s_i][s_i2][i].s != NULL) {
+							if (a[s_i][s_i2][i].d != NULL) {
+								if (SecondTransferStation(a[s_i][s_i2][i].d->name, end, s_i, a[s_i][s_i2][i].d->array[1], e_i, e_i2) == 1) {
+									DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
+								}
+							}
+							else if (SecondTransferStation(a[s_i][s_i2][i].s->name, end, s_i, a[s_i][s_i2][i].s->array[1], e_i, e_i2) == 1) {
+								DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
+							}
+						}
+						else if (SecondTransferStation(a[s_i][s_i2][i].a->name, end, s_i, a[s_i][s_i2][i].a->array[1], e_i, e_i2) == 1) {
+							DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
+						}
+					}
+					else if (SecondTransferStation(a[s_i][s_i2][i].w->name, end, s_i, a[s_i][s_i2][i].w->array[1], e_i, e_i2) == 1) {
+						DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
+					}
+				}
+			}
+			count = 3;
+			break;
+		case 3: 
+			printf("3개 환승\n");
+			for (int i = 0; i < 80; i++) {
+				if (a[s_i][s_i2][i].w != NULL) {
+					if (a[s_i][s_i2][i].a != NULL) {
+						if (a[s_i][s_i2][i].s != NULL) {
+							if (a[s_i][s_i2][i].d != NULL) {
+								if (ThirdTransferStation(a[s_i][s_i2][i].d->name, end, s_i, a[s_i][s_i2][i].d->array[1], e_i, e_i2) == 1) {
+									DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
+								}
+							}
+							else if (ThirdTransferStation(a[s_i][s_i2][i].s->name, end, s_i, a[s_i][s_i2][i].s->array[1], e_i, e_i2) == 1) {
+								DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
+							}
+						}
+						else if (ThirdTransferStation(a[s_i][s_i2][i].a->name, end, s_i, a[s_i][s_i2][i].a->array[1], e_i, e_i2) == 1) {
+							DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
+						}
+					}
+					else if (ThirdTransferStation(a[s_i][s_i2][i].w->name, end, s_i, a[s_i][s_i2][i].w->array[1], e_i, e_i2) == 1) {
+						DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
+					}
+				}
+			}
+			count = 4;
+			break;
+		}
+	}
+}
+
+int SecondTransferStation(char start[50], char end[50], int s_i, int s_i2, int e_i, int e_i2) {
+	for (int i = 0; i < 80; i++) {
+		if (a[s_i][s_i2][i].w != NULL) {
+			if (a[s_i][s_i2][i].a != NULL) {
+				if (a[s_i][s_i2][i].s != NULL) {
+					if (a[s_i][s_i2][i].d != NULL) {
+						if (a[s_i][s_i2][i].d->array[1] == e_i2) {
+							DisplayStationGUI(a[s_i][s_i2][i].d->name, end, a[s_i][s_i2][i].d->array[1], e_i2);
+							DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
+							return 1;
+						}
+					}
+					else if (a[s_i][s_i2][i].s->array[1] == e_i2) {
+						DisplayStationGUI(a[s_i][s_i2][i].s->name, end, a[s_i][s_i2][i].s->array[1], e_i2);
+						DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
+						return 1;
+					}
+				}
+				else if (a[s_i][s_i2][i].a->array[1] == e_i2) {
+					DisplayStationGUI(a[s_i][s_i2][i].a->name, end, a[s_i][s_i2][i].a->array[1], e_i2);
+					DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
+					return 1;
+				}
+			}
+			else if (a[s_i][s_i2][i].w->array[1] == e_i2) {
+				DisplayStationGUI(a[s_i][s_i2][i].w->name, end, a[s_i][s_i2][i].w->array[1], e_i2);
+				DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
+				return 1;
+			}
+		}
+	}
+
+	return 0;
+}
+
+int ThirdTransferStation(char start[50], char end[50], int s_i, int s_i2, int e_i, int e_i2) {
+	for (int i = 0; i < 80; i++) {
+		if (a[s_i][s_i2][i].w != NULL) {
+			if (a[s_i][s_i2][i].a != NULL) {
+				if (a[s_i][s_i2][i].s != NULL) {
+					if (a[s_i][s_i2][i].d != NULL) {
+						if (SecondTransferStation(a[s_i][s_i2][i].d->name, end, s_i, a[s_i][s_i2][i].d->array[1], e_i, e_i2) == 1) {
+							DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
+							return 1;
+						}
+					}
+					else if (SecondTransferStation(a[s_i][s_i2][i].s->name, end, s_i, a[s_i][s_i2][i].s->array[1], e_i, e_i2) == 1) {
+						DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
+						return 1;
+					}
+				}
+				else if (SecondTransferStation(a[s_i][s_i2][i].a->name, end, s_i, a[s_i][s_i2][i].a->array[1], e_i, e_i2) == 1) {
+					DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
+					return 1;
+				}
+			}
+			else if (SecondTransferStation(a[s_i][s_i2][i].w->name, end, s_i, a[s_i][s_i2][i].w->array[1], e_i, e_i2) == 1) {
+				DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
+				return 1;
+			}
+		}
+	}
+
+	return 0;
+}
+
+int secondDecomposerStation(char start[50], char end[50]) { // 안은규 (지하철)
+	int count = 1;
+
+	int s_i = NULL;
+	int s_i2 = NULL;
+	int s_i3 = NULL;
+	int s_o = 0;
+
+	int e_check; // 도착지
+	int e_i = NULL;
+	int e_i2 = NULL;
+	int e_i3 = NULL;
+	int e_o = 0;
+
+	printf("Second Decomposer 를 실행합니다.\n");
+
+	for (int i = 0; i < 6; i++) { // 지하철
+		for (int i2 = 0; i2 < 25; i2++) {
+			for (int i3 = 0; i3 < 80; i3++) {
+				if ((s_o != 1) && (strcmp(start, a[i][i2][i3].name) == 0)) {
+					printf("1. %d, 2. %d, 3. %d\n", i, i2, i3);
+					s_i = i;
+					s_i2 = i2;
+					s_i3 = i3;
+					s_o = 1;
+					printf("등록되었습니다. %s, %d, %d, %d\n", a[s_i][s_i2][s_i3].name, s_i, s_i2, s_i3);
+				}
+
+				else if ((e_o != 1) && (strcmp(end, a[i][i2][i3].name) == 0)) {
+					printf("1. %d, 2. %d, 3. %d\n", i, i2, i3);
+					e_i = i;
+					e_i2 = i2;
+					e_i3 = i3;
+					e_o = 1;
+					printf("등록되었습니다. %s, %d, %d, %d\n", a[e_i][e_i2][e_i3].name, e_i, e_i2, e_i3);
+				}
+			}
+		}
+	}
+
+	if (s_i2 == e_i2) {
+		DisplayStationGUI(a[s_i][s_i2][s_i3].name, a[e_i][e_i2][e_i3].name, s_i2, e_i2);
+	}
+
+	else {
+		printf("환승 역 분해를 시작합니다.\n");
+		TransferStation(start, end, s_i, s_i2, e_i, e_i2);
+	}
 	
 	return 0;
 }
@@ -2856,8 +3120,9 @@ int secondDecomposerBus(char a[50], char b[50]) { // 박동규 (버스)
 
 int main()
 { 
+	ImportStationAndTrainNumber();
 	TransferPoint();
-	firstDecomposer("인천", "동인천");
+	FirstDecomposer("동오", "황금");
 
     return 0;
 }
