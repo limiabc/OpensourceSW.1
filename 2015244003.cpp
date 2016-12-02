@@ -251,7 +251,7 @@ station a[6][25][80] =
 			{ "강변", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
 			{ "잠실나루", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
 			{ "잠실", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
-			{ "신천", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "서울신천", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
 			{ "종합운동장", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
 			{ "삼성", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
 			{ "선릉", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
@@ -1755,7 +1755,7 @@ station a[6][25][80] =
 			{ "중앙로", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
 			{ "대구역", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
 			{ "칠성시장", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
-			{ "신천", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
+			{ "대구신천", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
 			{ "동대구역", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
 			{ "큰고개", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
 			{ "아양교", NULL, NULL, NULL, NULL, NULL, NULL, NULL },
@@ -2970,12 +2970,14 @@ void DisplayPutStation(char start[50], char end[50], int s_i2, int e_i2, int s_i
 				printf("실행2.1\n");
 				if (strcmp(d[i].route_name[i2].start, "") == 0) {
 					printf("실행3\n");
-					printf("DisplayPut 입력 완료!");
+					printf("DisplayPut 입력 완료!\n");
 					strcpy(d[i].route_name[i2].start, start);
 					strcpy(d[i].route_name[i2].end, end);
 					d[i].route_name[i2].s_i2 = s_i2;
 					d[i].route_name[i2].e_i2 = e_i2;
 					d[i].spend_transfer = Check_transfer_checker;
+					printf("d[%d].route_name[%d].start, d[%d].route_name[%d].end, d[%d].route_name[%d].s_i2, d[%d].route_name[%d].e_i2\n", i, i2, i, i2, i, i2, i, i2);
+					DisplayStationGUI(d[i].route_name[i2].start, d[i].route_name[i2].end, d[i].route_name[i2].s_i2, d[i].route_name[i2].e_i2);
 					printf("Time실행\n");
 					TimeAccumulateStation(s_i3, e_i3, i);
 					return;
@@ -2989,12 +2991,14 @@ void DisplayPutStation(char start[50], char end[50], int s_i2, int e_i2, int s_i
 				printf("실행2.1\n");
 				if (strcmp(d[i].route_name[i2].start, "") == 0) {
 					printf("실행3\n");
-					printf("DisplayPut 입력 완료!");
+					printf("DisplayPut 입력 완료!\n");
 					strcpy(d[i].route_name[i2].start, start);
 					strcpy(d[i].route_name[i2].end, end);
 					d[i].route_name[i2].s_i2 = s_i2;
 					d[i].route_name[i2].e_i2 = e_i2;
 					d[i].spend_transfer = Check_transfer_checker;
+					printf("d[%d].route_name[%d].start, d[%d].route_name[%d].end, d[%d].route_name[%d].s_i2, d[%d].route_name[%d].e_i2\n", i, i2, i, i2, i, i2, i, i2);
+					DisplayStationGUI(d[i].route_name[i2].start, d[i].route_name[i2].end, d[i].route_name[i2].s_i2, d[i].route_name[i2].e_i2);
 					printf("Time실행\n");
 					TimeAccumulateStation(s_i3, e_i3, i);
 					return;
@@ -3277,13 +3281,14 @@ int main()
 	Check_route_name_initialize();
 	ImportStationAndTrainNumber();
 	TransferPoint();
-	FirstDecomposer("신천", "황금");
+	FirstDecomposer("동오", "황금");
 
 	for(int i = 0; i < 20; i++) {
 		for(int i2 = 0; i2 < 10; i++) {
-			printf("%s\n", d[i].route_name[i2]);
+			printf("ㄱㄱ?");
+			DisplayStationGUI(d[i].route_name[i2].start, d[i].route_name[i2].end, d[i].route_name[i2].s_i2, d[i].route_name[i2].e_i2);
 		}
-		printf("%d, %d\n", d[i].spend_time, d[i].spend_transfer);
+		printf("소요 시간 : %d, 소요 환승 : %d\n", d[i].spend_time, d[i].spend_transfer);
 	}
 
     return 0;
