@@ -1,0 +1,75 @@
+#include <stdio.h> 
+
+void main() 
+
+{ 
+
+   char buffer[1024] = { 0 , } ; 
+
+    printf("도시간 길 찾기 프로그램") ; 
+
+    scanf("%s",buffer ) ; 
+
+   
+
+   while(1) ;
+
+} 
+
+
+
+
+int main()   // 메인
+{
+ int i=1;
+ int select;
+ printf("도시간 길 찾기 프로그램\n");
+ printf("1. 역 검색\n");
+ printf("2. 종료\n");
+ printf("선택하세요. : ");
+ scanf("%d",&select);
+ printf("\n\n\n\n");
+
+ while(i) {
+
+  switch(select) {
+case 1:
+ showsub();   //검색 함수
+case 2:
+ i = 0;
+ printf("\n\n이용해 주셔서 감사합니다.\n");
+  }
+ }
+ return 0;
+}
+
+int showsub(void)   //역 검색
+{
+ char s_string[25];
+char e_string[25]; 
+ char dest[20];
+ int s=0, e=0;
+ printf("\n\n");
+ printf("********************************************\n");
+ printf("             - 검 색 하 기 -\n");
+ printf("********************************************\n");
+ printf("\n");
+ printf("\n출발역 이름을 입력하세요: ");
+    scanf("%s", s_check);
+    printf("\n출발역 이름을 다시 입력하세요: ");
+    scanf("%s", s_check);
+
+ 
+printf("\n도착역 이름을 입력하세요: ");
+    scanf("%s", e_check);
+    printf("\n도착역 이름을 다시 입력하세요: ");
+    scanf("%s", e_check);
+
+ for(int i = 0; i < NULL; i++){
+  if(!strcmp(first[i], start))
+   s = i;
+  else if(!strcmp(first[i], dest))
+   e = i;
+
+ }
+ 
