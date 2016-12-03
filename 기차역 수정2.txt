@@ -1,0 +1,932 @@
+struct train b[6][10][20] =
+ 
+ {
+ 
+ 			{ "가야역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "가평역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "각계역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "강경역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "강릉역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "강촌역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "개포역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "건천역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "검암역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "경산역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "경주역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "계룡역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "고한역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "곡성역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "공주역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "관촌역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "광명", { NULL }, NULL, NULL },
+ 
+
+ 
+ 			{ "광양", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "광운대", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "광주송정역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "광천역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+			{ "구례구역", { NULL }, NULL, NULL },
+ 
+	
+ 
+ 			{ "구미역", { NULL }, NULL, NULL },
+ 
+
+ 
+ 			{ "구포역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "국수역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "군복역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "군산역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+			{ "극락강역", { NULL }, NULL, NULL },
+ 
+
+ 
+ 			{ "금곡역", { NULL }, NULL, NULL },
+ 
+
+ 
+			{ "기장역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+			{ "김유정역", { NULL }, NULL, NULL },
+ 
+
+ 
+ 			{ "김제역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "김천역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "김천구미역", { NULL }, NULL, NULL },
+ 
+
+ 
+ 			{ "나전역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "나주역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "남성현역", { NULL }, NULL, NULL },
+ 
+ 	
+ 
+ 			{ "남원역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "남창역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "남춘천역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "남평역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "논산역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "능곡역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "능주역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "다시역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "단양역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "대광리역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "대구역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "대성리역", { NULL }, NULL, NULL },
+ 
+ 	
+ 
+ 			{ "대야역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "대전역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+			{ "대천역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "덕소역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "덕하역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "도계역", { NULL }, NULL, NULL },
+ 
+ 	
+ 
+ 			{ "도고온천역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "도담역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "도라산역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "동대구역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "동두천역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "동래역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "동백산역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "동산역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "동점역", { NULL }, NULL, NULL },
+ 
+ 		
+ 
+ 			{ "동탄역", { NULL }, NULL, NULL },
+ 
+ 		
+ 
+ 			{ "동해역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+			{ "동화역", { NULL }, NULL, NULL },
+
+
+ 
+			{ "득량역", { NULL }, NULL, NULL },
+
+
+ 
+ 			{ "마산역", { NULL }, NULL, NULL },
+ 
+		
+ 
+ 			{ "마석역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "망상역", { NULL }, NULL, NULL },
+ 
+ 
+ 
+ 			{ "망상해변역", { NULL }, NULL, NULL },
+ 
+		
+ 
+			{ "매곡역", { NULL }, NULL, NULL },
+ 
+		
+ 
+ 			{ "명봉역", { NULL }, NULL, NULL },
+ 
+ 
+ 			{ "목포역", { NULL }, NULL, NULL },
+ 
+ 			
+ 			{ "몽탄역", { NULL }, NULL, NULL },
+ 
+ 	
+ 			{ "무안역", { NULL }, NULL, NULL },
+ 		
+ 
+ 			{ "묵호역", { NULL }, NULL, NULL },
+ 
+ 		
+ 			{ "문산역", { NULL }, NULL, NULL },
+ 	
+ 
+			{ "물금역", { NULL }, NULL, NULL },
+
+
+			{ "민둥산역", { NULL }, NULL, NULL },
+
+
+			{ "밀양역", { NULL }, NULL, NULL },
+
+
+			{ "반곡역", { NULL }, NULL, NULL },
+
+
+			{ "반성역", { NULL }, NULL, NULL },
+
+
+			{ "백마고지역", { NULL }, NULL, NULL },
+
+
+			{ "백양리역", { NULL }, NULL, NULL },
+
+			
+			{ "백양사역", { NULL }, NULL, NULL },
+			
+
+			{ "벌교역", { NULL }, NULL, NULL },
+
+
+			{ "별어곡역", { NULL }, NULL, NULL },
+
+
+			{ "보성역", { NULL }, NULL, NULL },
+
+
+			{ "봉양역", { NULL }, NULL, NULL },
+
+
+			{ "봉화역", { NULL }, NULL, NULL },
+
+
+			{ "부강역", { NULL }, NULL, NULL },
+
+
+			{ "부산역", { NULL }, NULL, NULL },
+			
+
+			{ "부전역", { NULL }, NULL, NULL },
+
+
+			{ "부천역", { NULL }, NULL, NULL },
+
+
+			{ "북영천역", { NULL }, NULL, NULL },
+
+
+			{ "북천역", { NULL }, NULL, NULL },
+
+
+			{ "분천역", { NULL }, NULL, NULL },
+
+
+			{ "불국사역", { NULL }, NULL, NULL },
+
+
+			{ "비동역", { NULL }, NULL, NULL },
+
+
+			{ "사곡역", { NULL }, NULL, NULL },
+
+
+			{ "사릉역", { NULL }, NULL, NULL },
+
+
+			{ "사북역", { NULL }, NULL, NULL },
+
+
+			{ "사상역", { NULL }, NULL, NULL },
+
+
+			{ "삼랑진역", { NULL }, NULL, NULL },
+
+
+			{ "삼례역", { NULL }, NULL, NULL },
+
+
+			{ "삼산역", { NULL }, NULL, NULL },
+
+
+			{ "삼탄역", { NULL }, NULL, NULL },
+
+
+			{ "삽교역", { NULL }, NULL, NULL },
+
+
+			{ "상동역", { NULL }, NULL, NULL },
+
+
+			{ "상봉역", { NULL }, NULL, NULL },
+
+
+			{ "상주역", { NULL }, NULL, NULL },
+
+
+			{ "서경주역", { NULL }, NULL, NULL },
+
+
+			{ "서광주역", { NULL }, NULL, NULL },
+
+
+			{ "서대전역", { NULL }, NULL, NULL },
+
+
+			{ "서빙고역", { NULL }, NULL, NULL },
+
+
+			{ "서울역", { NULL }, NULL, NULL },
+
+
+			{ "서정리역", { NULL }, NULL, NULL },
+
+
+			{ "서천역", { NULL }, NULL, NULL },
+
+
+			{ "석불역", { NULL }, NULL, NULL },
+
+
+			{ "석포역", { NULL }, NULL, NULL },
+
+
+			{ "선평역", { NULL }, NULL, NULL },
+
+
+			{ "성환역", { NULL }, NULL, NULL },
+
+
+			{ "소요산역", { NULL }, NULL, NULL },
+
+
+			{ "소정리역", { NULL }, NULL, NULL },
+
+
+			{ "송정역", { NULL }, NULL, NULL },
+
+
+			{ "수서역", { NULL }, NULL, NULL },
+
+
+			{ "수영역", { NULL }, NULL, NULL },
+
+
+			{ "센텀역", { NULL }, NULL, NULL },
+
+
+			{ "수원역", { NULL }, NULL, NULL },
+
+
+			{ "순천역", { NULL }, NULL, NULL },
+
+
+			{ "승부역", { NULL }, NULL, NULL },
+
+
+			{ "신경주역", { NULL }, NULL, NULL },
+
+
+			{ "신기역", { NULL }, NULL, NULL },
+
+
+			{ "신녕역", { NULL }, NULL, NULL },
+
+
+			{ "신동역", { NULL }, NULL, NULL },
+
+
+			{ "신례원역", { NULL }, NULL, NULL },
+
+
+			{ "신림역", { NULL }, NULL, NULL },
+
+
+			{ "신망리역", { NULL }, NULL, NULL },
+
+
+			{ "신창역", { NULL }, NULL, NULL },
+
+
+			{ "신창원역", { NULL }, NULL, NULL },
+
+
+			{ "신탄리역", { NULL }, NULL, NULL },
+
+
+			{ "신탄진역", { NULL }, NULL, NULL },
+
+
+			{ "신태인역", { NULL }, NULL, NULL },
+
+
+			{ "심천역", { NULL }, NULL, NULL },
+
+
+			{ "쌍룡역", { NULL }, NULL, NULL },
+
+
+			{ "아산역", { NULL }, NULL, NULL },
+
+
+			{ "아우라지역", { NULL }, NULL, NULL },
+
+
+			{ "아포역", { NULL }, NULL, NULL },
+
+
+			{ "안강역", { NULL }, NULL, NULL },
+
+
+			{ "안동역", { NULL }, NULL, NULL },
+
+
+			{ "안양역", { NULL }, NULL, NULL },
+
+
+			{ "약목역", { NULL }, NULL, NULL },
+
+
+			{ "양동역", { NULL }, NULL, NULL },
+
+
+			{ "양보역", { NULL }, NULL, NULL },
+
+
+			{ "양수역", { NULL }, NULL, NULL },
+
+
+			{ "양원역", { NULL }, NULL, NULL },
+
+
+			{ "양평역", { NULL }, NULL, NULL },
+
+
+			{ "여수EXPO역", { NULL }, NULL, NULL },
+
+
+			{ "여천역", { NULL }, NULL, NULL },
+
+
+			{ "연당역", { NULL }, NULL, NULL },
+
+
+			{ "연무대역", { NULL }, NULL, NULL },
+
+
+			{ "연산역", { NULL }, NULL, NULL },
+
+
+			{ "연천역", { NULL }, NULL, NULL },
+
+
+			{ "영동역", { NULL }, NULL, NULL },
+
+
+			{ "영등포역", { NULL }, NULL, NULL },
+
+
+			{ "영월역", { NULL }, NULL, NULL },
+
+
+			{ "영주역", { NULL }, NULL, NULL },
+
+
+			{ "영천역", { NULL }, NULL, NULL },
+
+
+			{ "예당역", { NULL }, NULL, NULL },
+
+
+			{ "예미역", { NULL }, NULL, NULL },
+
+
+			{ "예산역", { NULL }, NULL, NULL },
+
+
+			{ "예천역", { NULL }, NULL, NULL },
+
+
+			{ "오근장역", { NULL }, NULL, NULL },
+
+
+			{ "오산역", { NULL }, NULL, NULL },
+
+
+			{ "오송역", { NULL }, NULL, NULL },
+
+
+			{ "오수역", { NULL }, NULL, NULL },
+
+
+			{ "옥곡역", { NULL }, NULL, NULL },
+
+
+			{ "옥산역", { NULL }, NULL, NULL },
+
+
+			{ "옥수역", { NULL }, NULL, NULL },
+
+
+			{ "옥천역", { NULL }, NULL, NULL },
+
+
+			{ "온양온천역", { NULL }, NULL, NULL },
+
+
+			{ "완사역", { NULL }, NULL, NULL },
+
+
+			{ "왕십리역", { NULL }, NULL, NULL },
+
+
+			{ "왜관역", { NULL }, NULL, NULL },
+
+
+			{ "용궁역", { NULL }, NULL, NULL },
+
+
+			{ "용문역", { NULL }, NULL, NULL },
+
+
+			{ "용산역", { NULL }, NULL, NULL },
+
+
+			{ "운천역", { NULL }, NULL, NULL },
+
+
+			{ "울산역", { NULL }, NULL, NULL },
+
+
+			{ "웅천역", { NULL }, NULL, NULL },
+
+
+			{ "원동역", { NULL }, NULL, NULL },
+
+
+			{ "월내역", { NULL }, NULL, NULL },
+
+
+			{ "음성역", { NULL }, NULL, NULL },
+
+
+			{ "의성역", { NULL }, NULL, NULL },
+
+
+			{ "의정부역", { NULL }, NULL, NULL },
+
+
+			{ "이양역", { NULL }, NULL, NULL },
+
+
+			{ "이원역", { NULL }, NULL, NULL },
+
+
+			{ "익산역", { NULL }, NULL, NULL },
+
+
+			{ "인천공항역", { NULL }, NULL, NULL },
+
+
+			{ "일로역", { NULL }, NULL, NULL },
+
+
+			{ "일산역", { NULL }, NULL, NULL },
+
+
+			{ "일신역", { NULL }, NULL, NULL },
+
+
+			{ "임기역", { NULL }, NULL, NULL },
+
+
+			{ "임성리역", { NULL }, NULL, NULL },
+
+
+			{ "임실역", { NULL }, NULL, NULL },
+
+
+			{ "임진강역", { NULL }, NULL, NULL },
+
+
+			{ "입실역", { NULL }, NULL, NULL },
+
+
+			{ "자미원역", { NULL }, NULL, NULL },
+
+
+			{ "장락역", { NULL }, NULL, NULL },
+
+
+			{ "장성역", { NULL }, NULL, NULL },
+
+
+			{ "장항역", { NULL }, NULL, NULL },
+
+
+			{ "전곡역", { NULL }, NULL, NULL },
+
+
+			{ "전의역", { NULL }, NULL, NULL },
+
+
+			{ "전주역", { NULL }, NULL, NULL },
+
+
+			{ "점촌역", { NULL }, NULL, NULL },
+
+
+			{ "정동진역", { NULL }, NULL, NULL },
+
+
+			{ "정선역", { NULL }, NULL, NULL },
+
+
+			{ "정읍역", { NULL }, NULL, NULL },
+
+
+			{ "제천역", { NULL }, NULL, NULL },
+
+
+			{ "조성역", { NULL }, NULL, NULL },
+
+
+			{ "조치원역", { NULL }, NULL, NULL },
+
+
+			{ "좌천역", { NULL }, NULL, NULL },
+
+
+			{ "주덕역", { NULL }, NULL, NULL },
+
+
+			{ "주안역", { NULL }, NULL, NULL },
+
+
+			{ "중리역", { NULL }, NULL, NULL },
+
+
+			{ "증평역", { NULL }, NULL, NULL },
+
+
+			{ "지제역", { NULL }, NULL, NULL },
+
+
+			{ "지탄역", { NULL }, NULL, NULL },
+
+
+			{ "진례역", { NULL }, NULL, NULL },
+
+
+			{ "진상역", { NULL }, NULL, NULL },
+
+
+			{ "진영역", { NULL }, NULL, NULL },
+
+
+			{ "진주역", { NULL }, NULL, NULL },
+
+
+			{ "진해역", { NULL }, NULL, NULL },
+
+
+			{ "창원역", { NULL }, NULL, NULL },
+
+
+			{ "창원중앙역", { NULL }, NULL, NULL },
+
+
+			{ "천안역", { NULL }, NULL, NULL },
+
+
+			{ "천안아산역", { NULL }, NULL, NULL },
+
+
+			{ "철암역", { NULL }, NULL, NULL },
+
+
+			{ "청도역", { NULL }, NULL, NULL },
+
+
+			{ "청량리역", { NULL }, NULL, NULL },
+
+
+			{ "청리역", { NULL }, NULL, NULL },
+
+
+			{ "청소역", { NULL }, NULL, NULL },
+
+
+			{ "청주역", { NULL }, NULL, NULL },
+
+
+			{ "청주공항역", { NULL }, NULL, NULL },
+
+
+			{ "청평역", { NULL }, NULL, NULL },
+
+
+			{ "초성리역", { NULL }, NULL, NULL },
+
+
+			{ "추전역", { NULL }, NULL, NULL },
+
+
+			{ "추풍령역", { NULL }, NULL, NULL },
+
+
+			{ "춘양역", { NULL }, NULL, NULL },
+
+
+			{ "춘천역", { NULL }, NULL, NULL },
+
+
+			{ "충주역", { NULL }, NULL, NULL },
+
+
+			{ "탄현역", { NULL }, NULL, NULL },
+
+
+			{ "탑리역", { NULL }, NULL, NULL },
+
+
+			{ "태백역", { NULL }, NULL, NULL },
+
+
+			{ "태화강역", { NULL }, NULL, NULL },
+
+
+			{ "퇴계원역", { NULL }, NULL, NULL },
+
+
+			{ "판교역", { NULL }, NULL, NULL },
+
+
+			{ "평내호평역", { NULL }, NULL, NULL },
+
+
+			{ "평택역", { NULL }, NULL, NULL },
+
+
+			{ "포항역", { NULL }, NULL, NULL },
+
+
+			{ "풍기역", { NULL }, NULL, NULL },
+
+
+			{ "하동역", { NULL }, NULL, NULL },
+
+
+			{ "하양역", { NULL }, NULL, NULL },
+
+
+			{ "한림정역", { NULL }, NULL, NULL },
+
+
+			{ "한탄강역", { NULL }, NULL, NULL },
+
+
+			{ "함안역", { NULL }, NULL, NULL },
+
+
+			{ "함열역", { NULL }, NULL, NULL },
+
+
+			{ "함창역", { NULL }, NULL, NULL },
+
+
+			{ "함평역", { NULL }, NULL, NULL },
+
+
+			{ "해운대역", { NULL }, NULL, NULL },
+
+
+			{ "행신역", { NULL }, NULL, NULL },
+
+
+			{ "현동역", { NULL }, NULL, NULL },
+
+
+			{ "호계역", { NULL }, NULL, NULL },
+
+
+			{ "홍성역", { NULL }, NULL, NULL },
+
+
+			{ "화명역", { NULL }, NULL, NULL },
+
+
+			{ "화본역", { NULL }, NULL, NULL },
+
+
+			{ "화순역", { NULL }, NULL, NULL },
+
+
+			{ "황간역", { NULL }, NULL, NULL },
+
+
+			{ "횡천역", { NULL }, NULL, NULL },
+
+
+			{ "효자역", { NULL }, NULL, NULL },
+
+
+			{ "효천역", { NULL }, NULL, NULL },
+
+
+			{ "흑석리역", { NULL }, NULL, NULL },
+
+
+			{ "희방사역", { NULL }, NULL, NULL },
+
+}
