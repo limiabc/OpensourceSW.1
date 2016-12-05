@@ -2420,6 +2420,9 @@ int FirstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºÐÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 
 					secondDecomposerStation(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", s_string, e_string);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 					secondDecomposerStation(e_string, end);
 
 					printf("1. %s, %s\n", start, s_string);
@@ -2435,6 +2438,9 @@ int FirstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºÐÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 
 					secondDecomposerStation(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", s_string, e_string);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 					secondDecomposerStation(e_string, end);
 
 					printf("1. %s, %s\n", start, s_string);
@@ -2449,6 +2455,9 @@ int FirstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºÐÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 					printf("case : 1-2-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
 					secondDecomposerStation(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", s_string, e_string);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 					secondDecomposerStation(e_string, end);
 
 					printf("1. %s, %s\n", start, s_string);
@@ -2464,6 +2473,9 @@ int FirstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºÐÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 
 					secondDecomposerStation(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", s_string, e_string);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 					secondDecomposerStation(e_string, end);
 
 					printf("1. %s, %s\n", start, s_string);
@@ -2479,6 +2491,9 @@ int FirstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºÐÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 
 					secondDecomposerStation(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", s_string, e_string);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 					secondDecomposerStation(e_string, end);
 
 					printf("1. %s, %s\n", start, s_string);
@@ -2502,30 +2517,45 @@ int FirstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºÐÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 				switch (e_i) {
 				case 0: printf("Error Number : 0000\n"); break;
 				default: printf("case : 2-0-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n"); secondDecomposerTrain(s_string, e_string);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", s_string, e_string);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 					printf("2. %s, %s\n", s_string, e_string); break;
 				}; break;
 			case 1:
 				switch (e_i) {
 				case 1: printf("Error Number : 0000\n"); break;
 				default: printf("case : 2-1-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n"); secondDecomposerTrain(s_string, e_string);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", s_string, e_string);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 					printf("2. %s, %s\n", s_string, e_string); break;
 				}; break;
 			case 2:
 				switch (e_i) {
 				case 2: printf("Error Number : 0000\n"); break;
 				default: printf("case : 2-2-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n"); secondDecomposerTrain(s_string, e_string);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", s_string, e_string);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 					printf("2. %s, %s\n", s_string, e_string); break;
 				}; break;
 			case 3:
 				switch (e_i) {
 				case 3: printf("Error Number : 0000\n"); break;
 				default: printf("case : 2-3-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n"); secondDecomposerTrain(s_string, e_string);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", s_string, e_string);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 					printf("2. %s, %s\n", s_string, e_string); break;
 				}; break;
 			case 4:
 				switch (e_i) {
 				case 4: printf("Error Number : 0000\n"); break;
 				default: printf("case : 2-4-D ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n"); secondDecomposerTrain(s_string, e_string);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", s_string, e_string);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 					printf("2. %s, %s\n", s_string, e_string); break;
 				}; break;
 			}
@@ -2548,6 +2578,9 @@ int FirstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºÐÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", s_string, e_string);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 					secondDecomposerBus(e_string, end);
 
 					printf("1. %s, %s\n", start, s_string);
@@ -2563,6 +2596,9 @@ int FirstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºÐÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", s_string, e_string);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 					secondDecomposerBus(e_string, end);
 
 					printf("1. %s, %s\n", start, s_string);
@@ -2578,6 +2614,9 @@ int FirstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºÐÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", s_string, e_string);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 					secondDecomposerBus(e_string, end);
 
 					printf("1. %s, %s\n", start, s_string);
@@ -2593,6 +2632,9 @@ int FirstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºÐÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", s_string, e_string);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 					secondDecomposerBus(e_string, end);
 
 					printf("1. %s, %s\n", start, s_string);
@@ -2608,6 +2650,9 @@ int FirstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºÐÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", s_string, e_string);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 					secondDecomposerBus(e_string, end);
 
 					printf("1. %s, %s\n", start, s_string);
@@ -2641,6 +2686,9 @@ int FirstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºÐÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 
 					secondDecomposerStation(start, s_string);
 					secondDecomposerTrain(s_string, end);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷ Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", s_string, e_string);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 
 					printf("1. %s, %s\n", start, s_string);
 					printf("2. %s, %s\n", s_string, end);
@@ -2660,6 +2708,9 @@ int FirstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºÐÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 
 					secondDecomposerStation(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷ Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", s_string, e_string);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 					secondDecomposerBus(e_string, end);
 
 					printf("1. %s, %s\n", start, s_string);
@@ -2685,6 +2736,9 @@ int FirstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºÐÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 					printf("case : 2-1-I ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
 
 					secondDecomposerTrain(s_string, e_string);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷ Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", s_string, e_string);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 					secondDecomposerStation(e_string, end);
 
 					printf("2. %s, %s\n", s_string, e_string);
@@ -2704,6 +2758,9 @@ int FirstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºÐÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 					printf("case : 2-3-I ÀÛ¾÷ÀÌ È®ÀÎµÇ¾ú½À´Ï´Ù.\n");
 
 					secondDecomposerTrain(s_string, e_string);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷ Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", s_string, e_string);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 					secondDecomposerBus(e_string, end);
 
 					printf("1. %s, %s\n", s_string, e_string);
@@ -2726,6 +2783,9 @@ int FirstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºÐÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷ Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", s_string, e_string);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 					secondDecomposerStation(e_string, end);
 
 					printf("1. %s, %s\n", start, s_string);
@@ -2749,6 +2809,9 @@ int FirstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºÐÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 
 					secondDecomposerBus(start, s_string);
 					secondDecomposerTrain(s_string, e_string);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷ Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", s_string, e_string);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 
 					printf("1. %s, %s\n", start, s_string);
 					printf("2. %s, %s\n", s_string, e_string);
@@ -2759,6 +2822,9 @@ int FirstDecomposer(char start[50], char end[50]) { // ÃÖÃÊ ºÐÇØÀÚ (Ãâ¹ßÁö(a) ¿Í
 					findSameCityTransferStation(e_i, e_i2, e_i3, s_check, e_check);
 					secondDecomposerBus(start, FIRSTDECOMPOSER_TRANSFER_START);
 					secondDecomposerTrain(FIRSTDECOMPOSER_TRANSFER_END, end);
+					printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< ±âÂ÷ Å¾½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
+					printf("	%16s (±âÂ÷) -> %16s (±âÂ÷)\n", FIRSTDECOMPOSER_TRANSFER_END, end);
+					printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
 
 					printf("1. %s, %s\n", start, FIRSTDECOMPOSER_TRANSFER_START);
 					printf("2. %s, %s\n", FIRSTDECOMPOSER_TRANSFER_END, end);
@@ -2924,7 +2990,7 @@ void TimeAccumulateStation(int s_i4, int e_i4, int i) {
 }
 
 void DisplayStationGUI(char start[50], char end[50], int s_i2, int e_i2) {
-	printf("%10s (%3d È£¼±) -> %10s (%3d È£¼±)\n", start, s_i2, end, e_i2);
+	printf("	%14s (%3d È£¼±) -> %14s (%3d È£¼±)\n", start, s_i2, end, e_i2);
 }
 
 void DisplayStationGUI(char start[50], char end[50], int s_i2, int e_i2, char via[50], int v_i2) {
@@ -2976,8 +3042,10 @@ void DisplayPutStation(char start[50], char end[50], int s_i2, int e_i2, int s_i
 					d[i].route_name[i2].s_i2 = s_i2;
 					d[i].route_name[i2].e_i2 = e_i2;
 					d[i].spend_transfer = Check_transfer_checker;
+					printf("¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ\n");
 					printf("d[%d].route_name[%d].start, d[%d].route_name[%d].end, d[%d].route_name[%d].s_i2, d[%d].route_name[%d].e_i2\n", i, i2, i, i2, i, i2, i, i2);
 					DisplayStationGUI(d[i].route_name[i2].start, d[i].route_name[i2].end, d[i].route_name[i2].s_i2, d[i].route_name[i2].e_i2);
+					printf("¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ\n");
 					printf("Time½ÇÇà\n");
 					TimeAccumulateStation(s_i3, e_i3, i);
 					return;
@@ -3011,120 +3079,132 @@ void DisplayPutStation(char start[50], char end[50], int s_i2, int e_i2, int s_i
 
 void TransferStation(char start[50], char end[50], int s_i, int s_i2, int e_i, int e_i2) { // È¯½Â ¿ª ºÐÇØ ÇÔ¼ö
 	int count = 1;
+	int p = 0;
 
 	while (count < 4) {
 		switch (count) {
 		case 1: 
-			printf("1°³ È¯½Â\n");
+			printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< 1°³ È¯½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
 			Check_transfer_checker = 1;
 			for (int i = 0; i < 80; i++) {
 				if (a[s_i][s_i2][i].w != NULL) {
 					if (a[s_i][s_i2][i].a != NULL) {
 						if (a[s_i][s_i2][i].s != NULL) {
 							if (a[s_i][s_i2][i].d != NULL) {
-								if (a[s_i][s_i2][i].d->array[1] == e_i2) {							
+								if ((p == 0) && (a[s_i][s_i2][i].d->array[1] == e_i2)) {							
 									DisplayStationGUI(a[s_i][s_i2][i].d->name, end, a[s_i][s_i2][i].d->array[1], e_i2);
-									DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
-									DisplayPutStation(a[s_i][s_i2][i].d->name, end, a[s_i][s_i2][i].d->array[1], e_i2, s_i, e_i);
-									DisplayPutStation(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1], s_i, e_i);
-									Check_line_checker++;
+									DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]); 
+									printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
+									printf("\n");
+									p++;
 								}
 							}
-							else if (a[s_i][s_i2][i].s->array[1] == e_i2) {
+							else if ((p == 0) && (a[s_i][s_i2][i].s->array[1] == e_i2)) {
 								DisplayStationGUI(a[s_i][s_i2][i].s->name, end, a[s_i][s_i2][i].s->array[1], e_i2);
-								DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
-								DisplayPutStation(a[s_i][s_i2][i].s->name, end, a[s_i][s_i2][i].s->array[1], e_i2, s_i, e_i);
-								DisplayPutStation(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1], s_i, e_i);
-								Check_line_checker++;
+								DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]); 
+									printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
+								    printf("\n");
+									p++;
 							}
 						}
-						else if (a[s_i][s_i2][i].a->array[1] == e_i2) {
+						else if ((p == 0) && (a[s_i][s_i2][i].a->array[1] == e_i2)) {
 							DisplayStationGUI(a[s_i][s_i2][i].a->name, end, a[s_i][s_i2][i].a->array[1], e_i2);
-							DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
-							DisplayPutStation(a[s_i][s_i2][i].a->name, end, a[s_i][s_i2][i].a->array[1], e_i2, s_i, e_i);
-							DisplayPutStation(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1], s_i, e_i);
-							Check_line_checker++;
+							DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]); 
+									printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
+									printf("\n");
+									p++;
 						}
 					}	
-					else if (a[s_i][s_i2][i].w->array[1] == e_i2) {
+					else if ((p == 0) && (a[s_i][s_i2][i].w->array[1] == e_i2)) {
 						DisplayStationGUI(a[s_i][s_i2][i].w->name, end, a[s_i][s_i2][i].w->array[1], e_i2);
-						DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
-						DisplayPutStation(a[s_i][s_i2][i].w->name, end, a[s_i][s_i2][i].w->array[1], e_i2, s_i, e_i);
-						DisplayPutStation(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1], s_i, e_i);
-						Check_line_checker++;
+						DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]); 
+									printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
+									printf("\n");
+									p++;
 					}
 				}
 			}
 			count = 2;
+			p = 0;
 			break;
 		case 2: 
-			printf("2°³ È¯½Â\n");
+			printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< 2°³ È¯½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
 			Check_transfer_checker = 2;
 			for (int i = 0; i < 80; i++) {
 				if (a[s_i][s_i2][i].w != NULL) {
 					if (a[s_i][s_i2][i].a != NULL) {
 						if (a[s_i][s_i2][i].s != NULL) {
 							if (a[s_i][s_i2][i].d != NULL) {
-								if (SecondTransferStation(a[s_i][s_i2][i].d->name, end, s_i, a[s_i][s_i2][i].d->array[1], e_i, e_i2) == 1) {
-									DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
-									DisplayPutStation(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1], s_i, e_i);
-									Check_line_checker++;
+								if ((p == 0) && SecondTransferStation(a[s_i][s_i2][i].d->name, end, s_i, a[s_i][s_i2][i].d->array[1], e_i, e_i2) == 1) {
+									DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]); 
+									printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
+									printf("\n");
+									p++;
 								}
 							}
-							else if (SecondTransferStation(a[s_i][s_i2][i].s->name, end, s_i, a[s_i][s_i2][i].s->array[1], e_i, e_i2) == 1) {
-								DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
-								DisplayPutStation(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1], s_i, e_i);
-								Check_line_checker++;
+							else if ((p == 0) && SecondTransferStation(a[s_i][s_i2][i].s->name, end, s_i, a[s_i][s_i2][i].s->array[1], e_i, e_i2) == 1) {
+								DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]); 
+									printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
+									printf("\n");
+									p++;
 							}
 						}
-						else if (SecondTransferStation(a[s_i][s_i2][i].a->name, end, s_i, a[s_i][s_i2][i].a->array[1], e_i, e_i2) == 1) {
-							DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
-							DisplayPutStation(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1], s_i, e_i);
-							Check_line_checker++;
+						else if ((p == 0) && SecondTransferStation(a[s_i][s_i2][i].a->name, end, s_i, a[s_i][s_i2][i].a->array[1], e_i, e_i2) == 1) {
+							DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]); 
+									printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
+									printf("\n");
+									p++;
 						}
 					}
-					else if (SecondTransferStation(a[s_i][s_i2][i].w->name, end, s_i, a[s_i][s_i2][i].w->array[1], e_i, e_i2) == 1) {
-						DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
-						DisplayPutStation(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1], s_i, e_i);
-						Check_line_checker++;
+					else if ((p == 0) && SecondTransferStation(a[s_i][s_i2][i].w->name, end, s_i, a[s_i][s_i2][i].w->array[1], e_i, e_i2) == 1) {
+						DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]); 
+									printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
+									printf("\n");
+									p++;
 					}
 				}
 			}
 			count = 3;
+			p = 0;
 			break;
 		case 3: 
-			printf("3°³ È¯½Â\n");
+			printf("	¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡< 3°³ È¯½Â >¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤\n");
 			Check_transfer_checker = 3;
 			for (int i = 0; i < 80; i++) {
 				if (a[s_i][s_i2][i].w != NULL) {
 					if (a[s_i][s_i2][i].a != NULL) {
 						if (a[s_i][s_i2][i].s != NULL) {
 							if (a[s_i][s_i2][i].d != NULL) {
-								if (ThirdTransferStation(a[s_i][s_i2][i].d->name, end, s_i, a[s_i][s_i2][i].d->array[1], e_i, e_i2) == 1) {
-									DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
-									DisplayPutStation(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1], s_i, e_i);
-									Check_line_checker++;
+								if ((p == 0) && ThirdTransferStation(a[s_i][s_i2][i].d->name, end, s_i, a[s_i][s_i2][i].d->array[1], e_i, e_i2) == 1) {
+									DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]); 
+									printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
+									printf("\n");
+									p++;
 								}
 							}
-							else if (ThirdTransferStation(a[s_i][s_i2][i].s->name, end, s_i, a[s_i][s_i2][i].s->array[1], e_i, e_i2) == 1) {
-								DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
-								DisplayPutStation(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1], s_i, e_i);
-								Check_line_checker++;
+							else if ((p == 0) && ThirdTransferStation(a[s_i][s_i2][i].s->name, end, s_i, a[s_i][s_i2][i].s->array[1], e_i, e_i2) == 1) {
+								DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]); 
+									printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
+									printf("\n");
+									p++;
 							}
 						}
-						else if (ThirdTransferStation(a[s_i][s_i2][i].a->name, end, s_i, a[s_i][s_i2][i].a->array[1], e_i, e_i2) == 1) {
-							DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
-							DisplayPutStation(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1], s_i, e_i);
-							Check_line_checker++;
+						else if ((p == 0) && ThirdTransferStation(a[s_i][s_i2][i].a->name, end, s_i, a[s_i][s_i2][i].a->array[1], e_i, e_i2) == 1) {
+							DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]); 
+									printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
+									printf("\n");
+									p++;
 						}
 					}
-					else if (ThirdTransferStation(a[s_i][s_i2][i].w->name, end, s_i, a[s_i][s_i2][i].w->array[1], e_i, e_i2) == 1) {
-						DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
-						DisplayPutStation(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1], s_i, e_i);
-						Check_line_checker++;
+					else if ((p == 0) && ThirdTransferStation(a[s_i][s_i2][i].w->name, end, s_i, a[s_i][s_i2][i].w->array[1], e_i, e_i2) == 1) {
+						DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]); 
+									printf("	¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥\n");
+									printf("\n");
+									p++;
 					}
 				}
 			}
+			p = 0;
 			count = 4;
 			break;
 		}
@@ -3139,33 +3219,25 @@ int SecondTransferStation(char start[50], char end[50], int s_i, int s_i2, int e
 					if (a[s_i][s_i2][i].d != NULL) {
 						if (a[s_i][s_i2][i].d->array[1] == e_i2) {
 							DisplayStationGUI(a[s_i][s_i2][i].d->name, end, a[s_i][s_i2][i].d->array[1], e_i2);
-							DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
-							DisplayPutStation(a[s_i][s_i2][i].d->name, end, a[s_i][s_i2][i].d->array[1], e_i2, s_i, e_i);
-							DisplayPutStation(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1], s_i, e_i);
+							DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]); 
 							return 1;
 						}
 					}
 					else if (a[s_i][s_i2][i].s->array[1] == e_i2) {
 						DisplayStationGUI(a[s_i][s_i2][i].s->name, end, a[s_i][s_i2][i].s->array[1], e_i2);
-						DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
-						DisplayPutStation(a[s_i][s_i2][i].s->name, end, a[s_i][s_i2][i].s->array[1], e_i2, s_i, e_i);
-						DisplayPutStation(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1], s_i, e_i);
+						DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]); 
 						return 1;
 					}
 				}
 				else if (a[s_i][s_i2][i].a->array[1] == e_i2) {
 					DisplayStationGUI(a[s_i][s_i2][i].a->name, end, a[s_i][s_i2][i].a->array[1], e_i2);
-					DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
-					DisplayPutStation(a[s_i][s_i2][i].a->name, end, a[s_i][s_i2][i].a->array[1], e_i2, s_i, e_i);
-					DisplayPutStation(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1], s_i, e_i);
+					DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]); 
 					return 1;
 				}
 			}
 			else if (a[s_i][s_i2][i].w->array[1] == e_i2) {
 				DisplayStationGUI(a[s_i][s_i2][i].w->name, end, a[s_i][s_i2][i].w->array[1], e_i2);
-				DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
-				DisplayPutStation(a[s_i][s_i2][i].w->name, end, a[s_i][s_i2][i].w->array[1], e_i2, s_i, e_i);
-				DisplayPutStation(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1], s_i, e_i);
+				DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]); 
 				return 1;
 			}
 		}
@@ -3181,26 +3253,22 @@ int ThirdTransferStation(char start[50], char end[50], int s_i, int s_i2, int e_
 				if (a[s_i][s_i2][i].s != NULL) {
 					if (a[s_i][s_i2][i].d != NULL) {
 						if (SecondTransferStation(a[s_i][s_i2][i].d->name, end, s_i, a[s_i][s_i2][i].d->array[1], e_i, e_i2) == 1) {
-							DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
-							DisplayPutStation(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1], s_i, e_i);
+							DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]); 
 							return 1;
 						}
 					}
 					else if (SecondTransferStation(a[s_i][s_i2][i].s->name, end, s_i, a[s_i][s_i2][i].s->array[1], e_i, e_i2) == 1) {
-						DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
-						DisplayPutStation(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1], s_i, e_i);
+						DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]); 
 						return 1;
 					}
 				}
 				else if (SecondTransferStation(a[s_i][s_i2][i].a->name, end, s_i, a[s_i][s_i2][i].a->array[1], e_i, e_i2) == 1) {
-					DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
-					DisplayPutStation(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1], s_i, e_i);
+					DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]); 
 					return 1;
 				}
 			}
 			else if (SecondTransferStation(a[s_i][s_i2][i].w->name, end, s_i, a[s_i][s_i2][i].w->array[1], e_i, e_i2) == 1) {
-				DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]);
-				DisplayPutStation(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1], s_i, e_i);
+				DisplayStationGUI(start, a[s_i][s_i2][i].name, s_i2, a[s_i][s_i2][i].array[1]); 
 				return 1;
 			}
 		}
@@ -3278,17 +3346,52 @@ int secondDecomposerBus(char a[50], char b[50]) { // ¹Úµ¿±Ô (¹ö½º)
 
 int main()
 {
+	int g = 0;
+	char d;
+	char starting[50];
+	char ending[50];
+
 	Check_route_name_initialize();
 	ImportStationAndTrainNumber();
 	TransferPoint();
-	FirstDecomposer("µ¿¿À", "È²±Ý");
 
-	for(int i = 0; i < 20; i++) {
-		for(int i2 = 0; i2 < 10; i++) {
-			printf("¤¡¤¡?");
-			DisplayStationGUI(d[i].route_name[i2].start, d[i].route_name[i2].end, d[i].route_name[i2].s_i2, d[i].route_name[i2].e_i2);
+	while (g == 0) {
+		system("cls");
+		printf("\n\n");
+		printf("	* ±³Åë È¯°æ º¯¼ö ¾÷·Îµå°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù.\n");
+		printf("	* ÁöÇÏÃ¶ ¿ªÀÇ È¯½Â Æ÷ÀÎÆ® ÁöÁ¤ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.\n\n");
+		printf("	¿ÀÇÂ¼Ò½º SW - 1Á¶\n");
+		printf("	ÇÑº´Á¤ (2015244003)\n");
+		printf("	¾ÈÀº±Ô (2015244049)\n");
+		printf("	¹Úµ¿±Ô (2015244087)\n");
+		printf("	±è¼¼ÈÆ (2015244103)\n\n");
+		printf("	°èÈ¹¸í : µµ½Ã°£ ÅëÇÕ ±æ Ã£±â ÇÁ·Î±×·¥ÀÇ °³¹ß\n");
+		printf("	¶óÀÌ¼¾½º ÇüÅÂ : MIT License\n\n");
+		printf("¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡\n");
+		printf("	µµ½Ã°£ ±æ Ã£±â ÇÁ·Î±×·¥ \n");
+		printf("	Ãâ¹ß¿ªÀ» ÀÔ·Â ÇØ ÁÖ¼¼¿ä :	");
+		scanf("%s", starting);
+		if (strcmp(starting, "") == 0) {
+			printf("	Error! ¿ª ÀÌ¸§À» È®½ÇÈ÷ ÀÔ·Â ÇØ ÁÖ¼¼¿ä\n");
+			return 0;
 		}
-		printf("¼Ò¿ä ½Ã°£ : %d, ¼Ò¿ä È¯½Â : %d\n", d[i].spend_time, d[i].spend_transfer);
+		printf("	µµÂø¿ªÀ» ÀÔ·Â ÇØ ÁÖ¼¼¿ä :	");
+		scanf("%s", ending);
+		if(strcmp(ending, "") == 0) {
+			printf("	Error! ¿ª ÀÌ¸§À» È®½ÇÈ÷ ÀÔ·Â ÇØ ÁÖ¼¼¿ä\n");
+			return 0;
+		}
+		printf("¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡\n");
+
+		FirstDecomposer(starting, ending);
+		fflush(stdin);
+		printf("\n\n");
+		printf("	±æ Ã£±â ±â´ÉÀÌ ¼º°øÀûÀ¸·Î ¿Ï¼öµÇ¾ú½À´Ï´Ù.\n");
+		printf("	Ã³À½À¸·Î µ¹¾Æ °¡½Ã°Ú½À´Ï±î? (Y / N) : ");
+		scanf("%c", &d);
+		if (d == 'N') {
+			return 0;
+		}
 	}
 
     return 0;
